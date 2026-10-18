@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en" data-clay-os="web" data-clay-mode="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Clay — One design system for every screen</title>
+  <meta name="description" content="Clay is a free, token-driven design system for Web, iOS, Android, macOS, Windows and Linux. Switch platforms, customise colour, type and radius live, then ship via CDN, npm or native token exports." />
+  <meta name="theme-color" content="#05050f" />
+  <meta property="og:title" content="Clay — One design system for every screen" />
+  <meta property="og:description" content="Six platforms. 180+ components. Live theming. Native token exports for SwiftUI, Compose, Flutter, WinUI and GTK." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="dist/clay.css?v=4" />
+  <link rel="stylesheet" href="assets/css/site.css?v=4" />
+</head>
+<body class="site">
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas id="space" aria-hidden="true"></canvas>
+  <div class="nebula" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <div class="nav-inner">
+        <a href="index.html" class="brand" aria-label="Clay home"><span class="brand-mark"></span><span>Clay</span></a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="components.html">Components</a>
+          <a href="foundations.html">Foundations</a>
+          <a href="docs.html">Docs</a>
+          <a href="docs.html#install">Install</a>
+        </nav>
+        <span class="nav-spacer"></span>
+        <span class="ver hide-sm">v1.0.0</span>
+        <a class="icon-btn hide-sm" href="https://github.com/litu173/clay-design-system" aria-label="GitHub"><i data-icon="code"></i></a>
+        <a class="btn btn-primary btn-sm hide-sm" href="docs.html#install">Get started</a>
+        <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menuPanel"></button>
+      </div>
+    </div>
+  </header>
+  <nav class="menu-panel" id="menuPanel" aria-label="Mobile" hidden>
+    <a href="components.html"><i data-icon="grid"></i>Components</a>
+    <a href="foundations.html"><i data-icon="layers"></i>Foundations</a>
+    <a href="docs.html"><i data-icon="file"></i>Docs</a>
+    <a href="docs.html#install"><i data-icon="download"></i>Install</a>
+    <a href="components.html#foundations"><i data-icon="palette"></i>Theme playground</a>
+  </nav>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow reveal"><b>New</b> 6 platforms · 180+ components · 10 export formats</span>
+          <h1 class="reveal" style="--d:.08s">Design once.<br /><em class="serif grad-text">Feel native</em> everywhere.</h1>
+          <p class="lead reveal" style="--d:.16s">Clay is one design system that speaks every platform's language: Web, iOS, Android, macOS, Windows and Linux. Pick a platform, tune colour, type and radius live, then ship with one CDN line or export native tokens.</p>
+          <div class="cta reveal" style="--d:.24s">
+            <a class="btn btn-primary" href="components.html"><i data-icon="grid"></i>Explore components</a>
+            <a class="btn" href="components.html"><i data-icon="palette"></i>Try it live</a>
+          </div>
+          <div class="os-strip reveal" id="heroOS" style="--d:.32s" role="group" aria-label="Preview platform"></div>
+          <div class="hero-meta reveal" style="--d:.4s">
+            <div><b>6</b>platforms</div>
+            <div><b>180+</b>components</div>
+            <div><b>~37kb</b>CSS + JS, gzipped</div>
+            <div><b>0</b>dependencies</div>
+          </div>
+        </div>
+        <div class="hero-stage reveal" style="--d:.2s" id="heroStage" aria-label="Live platform preview">
+          <div class="orbit" aria-hidden="true"></div>
+          <div class="float-card fc-1"><span class="dot"><i data-icon="sparkles"></i></span><div><b id="heroOSLabel">Human Interface</b>Native feel, auto-adapted</div></div>
+          <div class="float-card fc-2"><span class="dot"><i data-icon="palette"></i></span><div><b>Live tokens</b>--clay-primary updated</div></div>
+          <div class="float-card fc-3"><span class="dot"><i data-icon="code"></i></span><div><b>SwiftUI · Compose · Flutter</b>Exported in one click</div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Human Interface Guidelines</span><span>Material Design 3</span><span>Fluent 2</span><span>GNOME Adwaita</span><span>macOS Sequoia</span><span>WCAG 2.2 AA</span><span>Design Tokens (DTCG)</span><span>Tailwind preset</span><span>SwiftUI</span><span>Jetpack Compose</span><span>Flutter</span><span>WinUI 3</span><span>GTK 4</span><span>React · Vue · Svelte · Angular</span>
+        <span>Human Interface Guidelines</span><span>Material Design 3</span><span>Fluent 2</span><span>GNOME Adwaita</span><span>macOS Sequoia</span><span>WCAG 2.2 AA</span><span>Design Tokens (DTCG)</span><span>Tailwind preset</span><span>SwiftUI</span><span>Jetpack Compose</span><span>Flutter</span><span>WinUI 3</span><span>GTK 4</span><span>React · Vue · Svelte · Angular</span>
+      </div>
+    </div>
+
+    <!-- PLATFORMS -->
+    <section class="section wrap" id="platforms">
+      <div class="sec-head center reveal">
+        <span class="kicker">One system · six dialects</span>
+        <h2>Same markup. <em class="serif">Native</em> on every OS.</h2>
+        <p>The markup below is identical in all six cards. Only <code class="inline">data-clay-os</code> changes. Switches, segmented controls, inputs and buttons take on each platform's own shape, type and motion.</p>
+      </div>
+      <div class="os-gallery" data-os-gallery></div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section wrap" style="padding-top:0">
+      <div class="sec-head reveal">
+        <span class="kicker">Why Clay</span>
+        <h2>Everything an interface needs, <em class="serif">nothing it doesn't.</em></h2>
+      </div>
+      <div class="feat-grid">
+        <article class="glass feat wide reveal"><span class="feat-ic"><i data-icon="layers"></i></span><h3>Token-driven to the core</h3><p>More than 120 CSS custom properties cover colour, shape, type, spacing, density, depth and motion. Change one variable and every component follows. Light, dark and auto modes come built in, and colour ramps are derived for you with <code class="inline">color-mix()</code>.</p></article>
+        <article class="glass feat reveal" style="--d:.06s"><span class="feat-ic"><i data-icon="smartphone"></i></span><h3>Every device</h3><p>Phone, tablet, desktop, watch and TV breakpoints, with device frames for mockups and safe-area aware bars.</p></article>
+        <article class="glass feat reveal"><span class="feat-ic"><i data-icon="accessibility"></i></span><h3>Accessible by default</h3><p>Native elements, ARIA roles, keyboard navigation, visible focus rings, a contrast checker and reduced-motion support.</p></article>
+        <article class="glass feat reveal" style="--d:.06s"><span class="feat-ic"><i data-icon="zap"></i></span><h3>Zero dependencies</h3><p>One CSS file and one optional JS file. Works with plain HTML, React, Vue, Svelte, Angular, Astro, Rails, Laravel and Django.</p></article>
+        <article class="glass feat reveal" style="--d:.12s"><span class="feat-ic"><i data-icon="code"></i></span><h3>Native token export</h3><p>Ship the same theme to SwiftUI, Jetpack Compose, Flutter, WinUI/XAML, GTK, Tailwind, SCSS and Figma (DTCG).</p></article>
+      </div>
+    </section>
+
+    <!-- CUSTOMIZE SHOWCASE -->
+    <section class="section wrap" id="customize" style="padding-top:0">
+      <div class="sec-head reveal">
+        <span class="kicker">Live theming</span>
+        <h2>Your brand, <em class="serif">in seconds.</em></h2>
+        <p>Drag a slider and watch the whole system respond. Your theme is saved locally, shareable by link and exportable to any platform.</p>
+      </div>
+      <div class="cz-show">
+        <div class="glass cz-controls reveal">
+          <div class="cz-group"><div class="cz-label">Platform</div><div class="seg" data-sync-os style="flex-wrap:wrap;border-radius:18px"></div></div>
+          <div class="cz-group"><div class="cz-label">Appearance</div><div class="seg" data-sync-mode></div></div>
+          <p style="color:var(--s-text-2);font-size:14px">Colour, radius, typeface, density, spacing, shadows and motion live in the Foundations panel on the components page.</p>
+          <a class="btn btn-grad" href="components.html"><i data-icon="palette"></i>Open the playground</a>
+          <a class="btn" href="docs.html#export"><i data-icon="download"></i>Export tokens</a>
+        </div>
+        <div class="cz-preview clay reveal" style="--d:.1s">
+          <div class="clay-card"><div class="clay-card-body">
+            <span class="clay-overline">Account</span>
+            <span class="clay-h3">Create workspace</span>
+            <div class="clay-field"><label for="ws">Workspace name</label><input id="ws" class="clay-input" value="Clay Studio"></div>
+            <div class="clay-field"><label for="pl">Plan</label><select id="pl" class="clay-select"><option>Pro · $12/mo</option><option>Team · $49/mo</option></select></div>
+            <label class="clay-choice"><input type="checkbox" class="clay-check" checked>Invite my team</label>
+            <div class="clay-row" style="margin-top:6px"><button class="clay-btn" data-clay-toast="Workspace created" data-clay-toast-type="success" data-clay-toast-message="Clay Studio is ready.">Create</button><button class="clay-btn clay-btn--ghost">Cancel</button></div>
+          </div></div>
+          <div class="clay-stack">
+            <div class="clay-card"><div class="clay-card-body">
+              <div class="clay-row clay-row-between"><span class="clay-title">Dark mode</span><input type="checkbox" role="switch" class="clay-switch" checked aria-label="Dark mode"></div>
+              <div class="clay-row clay-row-between"><span class="clay-title">Notifications</span><input type="checkbox" role="switch" class="clay-switch" aria-label="Notifications"></div>
+              <input type="range" class="clay-range" value="64" aria-label="Brightness">
+            </div></div>
+            <div class="clay-alert clay-alert--success"><i data-clay-icon="check-circle"></i><div><div class="clay-alert-title">Theme applied</div>Every component updated instantly.</div></div>
+            <div class="clay-row"><span class="clay-badge clay-badge--dot">Live</span><span class="clay-badge clay-badge--success">Stable</span><span class="clay-badge clay-badge--warning">Beta</span><span class="clay-chip" aria-pressed="true">Design</span><span class="clay-chip" aria-pressed="false">Code</span></div>
+            <div class="clay-row"><span class="clay-avatar-group"><span class="clay-avatar">MA</span><span class="clay-avatar" style="background:linear-gradient(135deg,#ff9f80,#e11d48)">JS</span><span class="clay-avatar" style="background:linear-gradient(135deg,#5ee6d0,#0284c7)">KL</span></span><span class="clay-caption">+12 collaborators</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TARGETS -->
+    <section class="section wrap" style="padding-top:0">
+      <div class="sec-head reveal">
+        <span class="kicker">Every surface</span>
+        <h2>From watch face <em class="serif">to wall display.</em></h2>
+      </div>
+      <div class="targets">
+        <div class="glass target reveal"><i data-icon="globe"></i><div><b>Web</b><small>HTML · React · Vue · Svelte</small></div></div>
+        <div class="glass target reveal"><i data-icon="smartphone"></i><div><b>iOS &amp; iPadOS</b><small>SwiftUI · Capacitor · PWA</small></div></div>
+        <div class="glass target reveal"><i data-icon="smartphone"></i><div><b>Android</b><small>Compose · Flutter · RN</small></div></div>
+        <div class="glass target reveal"><i data-icon="monitor"></i><div><b>macOS</b><small>SwiftUI · Electron · Tauri</small></div></div>
+        <div class="glass target reveal"><i data-icon="grid"></i><div><b>Windows 11</b><small>WinUI 3 · WPF · Electron</small></div></div>
+        <div class="glass target reveal"><i data-icon="terminal"></i><div><b>Linux</b><small>GTK 4 · libadwaita · Tauri</small></div></div>
+        <div class="glass target reveal"><i data-icon="tablet"></i><div><b>Tablet</b><small>Split views · sidebars</small></div></div>
+        <div class="glass target reveal"><i data-icon="watch"></i><div><b>Wearables</b><small>Compact density tokens</small></div></div>
+        <div class="glass target reveal"><i data-icon="tv"></i><div><b>TV &amp; kiosks</b><small>Spacious density · focus</small></div></div>
+        <div class="glass target reveal"><i data-icon="package"></i><div><b>Email &amp; docs</b><small>Static token export</small></div></div>
+      </div>
+    </section>
+
+    <!-- INSTALL -->
+    <section class="section wrap" id="install" style="padding-top:0">
+      <div class="sec-head reveal">
+        <span class="kicker">Ship it</span>
+        <h2>Three lines <em class="serif">to native.</em></h2>
+      </div>
+      <div class="install-grid">
+        <div class="glass install-card reveal"><h3><span class="n">1</span>Add from CDN</h3><p>Drop the stylesheet and runtime into any page. No build step.</p>
+<pre data-lang="html" data-label="index.html">
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/clay-ds@1/dist/clay.min.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/clay-ds@1/dist/clay.min.js" defer&gt;&lt;/script&gt;
+</pre></div>
+        <div class="glass install-card reveal" style="--d:.06s"><h3><span class="n">2</span>Pick a platform</h3><p>Set it in HTML, or let Clay detect the visitor's OS.</p>
+<pre data-lang="html" data-label="html">
+&lt;html data-clay-os="auto" data-clay-mode="auto"&gt;
+&lt;body class="clay"&gt;
+  &lt;button class="clay-btn"&gt;Continue&lt;/button&gt;
+</pre></div>
+        <div class="glass install-card reveal" style="--d:.12s"><h3><span class="n">3</span>Make it yours</h3><p>Theme at runtime, or export tokens to native apps.</p>
+<pre data-lang="js" data-label="app.js">
+Clay.init({ os: 'auto', mode: 'auto' });
+Clay.setTheme({ primary: '#e11d48', radius: 16 });
+Clay.export('swiftui'); // or compose, flutter…
+</pre></div>
+      </div>
+    </section>
+
+    <section class="section wrap" style="padding-top:0">
+      <div class="glass cta-band reveal">
+        <span class="kicker">Free · MIT licensed</span>
+        <h2>Build something <em class="serif grad-text">beautiful.</em></h2>
+        <p>Clay is open source and free for personal and commercial projects. Star it, fork it and make it yours.</p>
+        <div class="cta"><a class="btn btn-primary" href="docs.html"><i data-icon="file"></i>Read the docs</a><a class="btn" href="https://github.com/litu173/clay-design-system"><i data-icon="code"></i>View on GitHub</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div><a href="index.html" class="brand"><span class="brand-mark"></span><span>Clay</span></a><p>One token-driven design system for every platform, device and use case. Made with care by Mutaher.</p></div>
+        <div><h5>System</h5><a href="components.html">Components</a><a href="foundations.html">Foundations</a><a href="foundations.html#icons">Icons</a><a href="foundations.html#platforms">Platform specs</a></div>
+        <div><h5>Developers</h5><a href="docs.html#install">Install</a><a href="docs.html#theming">Theming API</a><a href="docs.html#export">Token export</a><a href="docs.html#frameworks">Frameworks</a></div>
+        <div><h5>More</h5><a href="https://github.com/litu173/clay-design-system">GitHub</a><a href="https://www.npmjs.com/package/clay-ds">npm</a><a href="docs.html#accessibility">Accessibility</a><a href="docs.html#changelog">Changelog</a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 Clay Design System · MIT License</span><span>Platform names belong to their respective owners. Clay is not affiliated with Apple, Google, Microsoft or GNOME.</span></div>
+    </div>
+  </footer>
+
+  <script src="dist/clay.js?v=4"></script>
+  <script src="assets/js/site.js?v=4"></script>
+</body>
+</html>

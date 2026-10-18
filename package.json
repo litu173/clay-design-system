@@ -1,0 +1,58 @@
+{
+  "name": "clay-ds",
+  "version": "1.0.0",
+  "description": "Clay \u2014 one token-driven design system for Web, iOS, Android, macOS, Windows and Linux. Live theming, 180+ components, native token export (SwiftUI, Compose, Flutter, WinUI, GTK).",
+  "license": "MIT",
+  "author": "Mutaher",
+  "homepage": "https://github.com/litu173/clay-design-system",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/litu173/clay-design-system.git"
+  },
+  "main": "dist/clay.js",
+  "style": "dist/clay.css",
+  "unpkg": "dist/clay.min.js",
+  "jsdelivr": "dist/clay.min.js",
+  "exports": {
+    ".": {
+      "style": "./dist/clay.css",
+      "default": "./dist/clay.js"
+    },
+    "./dist/*": "./dist/*",
+    "./tailwind": "./tailwind.js",
+    "./tokens.json": "./dist/tokens.json"
+  },
+  "files": [
+    "dist",
+    "tailwind.js",
+    "LICENSE",
+    "README.md"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "keywords": [
+    "design-system",
+    "ui-kit",
+    "css",
+    "design-tokens",
+    "ios",
+    "android",
+    "material",
+    "fluent",
+    "macos",
+    "gnome",
+    "adwaita",
+    "theming",
+    "components"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "serve": "python3 -m http.server 5180",
+    "prepublishOnly": "node scripts/build.mjs",
+    "test": "node scripts/coverage.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.23.0"
+  }
+}

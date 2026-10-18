@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en" data-clay-os="web" data-clay-mode="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Docs · Clay Design System</title>
+  <meta name="description" content="Install Clay via CDN or npm, theme it with CSS variables or the JS API, and export tokens to SwiftUI, Jetpack Compose, Flutter, WinUI, GTK, Tailwind and Figma." />
+  <meta name="theme-color" content="#05050f" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="dist/clay.css?v=4" />
+  <link rel="stylesheet" href="assets/css/site.css?v=4" />
+</head>
+<body class="site">
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas id="space" aria-hidden="true"></canvas>
+  <div class="nebula" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <div class="nav-inner">
+        <a href="index.html" class="brand" aria-label="Clay home"><span class="brand-mark"></span><span>Clay</span></a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="components.html">Components</a>
+          <a href="foundations.html">Foundations</a>
+          <a href="docs.html" aria-current="page">Docs</a>
+          <a href="docs.html#install">Install</a>
+        </nav>
+        <span class="nav-spacer"></span>
+        <span class="ver hide-sm">v1.0.0</span>
+        <a class="icon-btn hide-sm" href="https://github.com/litu173/clay-design-system" aria-label="GitHub"><i data-icon="code"></i></a>
+        <a class="btn btn-primary btn-sm hide-sm" href="components.html">Components</a>
+        <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menuPanel"></button>
+      </div>
+    </div>
+  </header>
+  <nav class="menu-panel" id="menuPanel" aria-label="Mobile" hidden>
+    <a href="components.html"><i data-icon="grid"></i>Components</a>
+    <a href="foundations.html"><i data-icon="layers"></i>Foundations</a>
+    <a href="docs.html"><i data-icon="file"></i>Docs</a>
+    <a href="docs.html#install"><i data-icon="download"></i>Install</a>
+    <a href="components.html#foundations"><i data-icon="palette"></i>Theme playground</a>
+  </nav>
+
+  <main id="main" class="wrap docs">
+    <aside class="docs-side" aria-label="Documentation">
+      <h4>Getting started</h4>
+      <a href="#intro">Introduction</a>
+      <a href="#install">Installation</a>
+      <a href="#quickstart">Quick start</a>
+      <a href="#platforms">Choosing a platform</a>
+      <h4>Theming</h4>
+      <a href="#theming">CSS variables</a>
+      <a href="#js-api">JavaScript API</a>
+      <a href="#export">Token export</a>
+      <h4>Guides</h4>
+      <a href="#frameworks">Frameworks</a>
+      <a href="#native">Native apps</a>
+      <a href="#accessibility">Accessibility</a>
+      <a href="#browsers">Browser support</a>
+      <a href="#changelog">Changelog</a>
+    </aside>
+
+    <div class="docs-main">
+      <div class="docs-hero" id="intro">
+        <span class="kicker">Documentation</span>
+        <h1>Up and running <em class="serif grad-text">in a minute.</em></h1>
+        <p>Clay is a CSS file and an optional ~15kb (gzipped) runtime. There's no build step, no framework lock-in and no dependencies. These docs cover installing it, picking a platform, theming it and taking your tokens native.</p>
+      </div>
+
+      <section class="doc-sec" id="install">
+        <span class="kicker">Getting started</span>
+        <h2>Installation</h2>
+        <p class="desc">Use whichever fits your stack. All options ship the same files.</p>
+        <h3 class="sub">CDN (fastest)</h3>
+<pre data-lang="html" data-label="jsDelivr">
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/clay-ds@1/dist/clay.min.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/clay-ds@1/dist/clay.min.js" defer&gt;&lt;/script&gt;
+</pre>
+<pre data-lang="html" data-label="unpkg / GitHub mirror">
+&lt;link rel="stylesheet" href="https://unpkg.com/clay-ds@1/dist/clay.min.css"&gt;
+&lt;!-- or straight from GitHub releases --&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/litu173/clay-design-system@v1.0.0/dist/clay.min.css"&gt;
+</pre>
+        <h3 class="sub">Package managers</h3>
+<pre data-lang="bash" data-label="terminal">
+npm install clay-ds
+# or
+pnpm add clay-ds
+yarn add clay-ds
+bun add clay-ds
+</pre>
+<pre data-lang="js" data-label="main.js">
+import 'clay-ds/dist/clay.css';
+import Clay from 'clay-ds';
+
+Clay.init({ os: 'auto', mode: 'auto' });
+</pre>
+        <h3 class="sub">Download</h3>
+        <p class="desc">Grab <a href="dist/clay.css?v=4" download style="color:var(--s-accent)">clay.css</a>, <a href="dist/clay.js?v=4" download style="color:var(--s-accent)">clay.js</a> and <a href="dist/tokens.json" download style="color:var(--s-accent)">tokens.json</a> and self-host them.</p>
+      </section>
+
+      <section class="doc-sec" id="quickstart">
+        <span class="kicker">Getting started</span>
+        <h2>Quick start</h2>
+        <p class="desc">Here's a complete page. Copy it into an <code class="inline">.html</code> file and open it.</p>
+<pre data-lang="html" data-label="index.html">
+&lt;!doctype html&gt;
+&lt;html lang="en" data-clay-os="auto" data-clay-mode="auto"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"&gt;
+  &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/clay-ds@1/dist/clay.min.css"&gt;
+  &lt;script src="https://cdn.jsdelivr.net/npm/clay-ds@1/dist/clay.min.js" data-clay-auto data-os="auto" data-mode="auto" defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body class="clay"&gt;
+  &lt;main class="clay-container clay-stack" style="padding-block:48px"&gt;
+    &lt;h1 class="clay-h1"&gt;Hello, Clay&lt;/h1&gt;
+    &lt;div class="clay-card"&gt;&lt;div class="clay-card-body"&gt;
+      &lt;div class="clay-field"&gt;
+        &lt;label for="email"&gt;Email&lt;/label&gt;
+        &lt;input id="email" class="clay-input" placeholder="you@example.com"&gt;
+      &lt;/div&gt;
+      &lt;label class="clay-choice"&gt;&lt;input type="checkbox" role="switch" class="clay-switch" checked&gt; Subscribe&lt;/label&gt;
+      &lt;button class="clay-btn" data-clay-toast="Welcome aboard!" data-clay-toast-type="success"&gt;Sign up&lt;/button&gt;
+    &lt;/div&gt;&lt;/div&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+      </section>
+
+      <section class="doc-sec" id="platforms">
+        <span class="kicker">Getting started</span>
+        <h2>Choosing a platform</h2>
+        <p class="desc">Set <code class="inline">data-clay-os</code> to <code class="inline">web</code>, <code class="inline">ios</code>, <code class="inline">android</code>, <code class="inline">macos</code>, <code class="inline">windows</code>, <code class="inline">linux</code> or <code class="inline">auto</code> (detect from the visitor's device). Set <code class="inline">data-clay-mode</code> to <code class="inline">light</code>, <code class="inline">dark</code> or <code class="inline">auto</code>. Keep both attributes on the same element. You can nest them to show several platforms on one page.</p>
+<pre data-lang="html" data-label="Mix platforms">
+&lt;section data-clay-os="ios" data-clay-mode="dark" class="clay"&gt; …iOS preview… &lt;/section&gt;
+&lt;section data-clay-os="windows" data-clay-mode="light" class="clay"&gt; …Windows preview… &lt;/section&gt;
+</pre>
+        <div class="callout"><i data-icon="info"></i><div><b>Tip:</b> In hybrid apps built with Capacitor, Ionic, Electron, Tauri or a PWA, use <code class="inline">data-clay-os="auto"</code>. The same build then looks like iOS on an iPhone, Material on a Pixel and Fluent on Windows.</div></div>
+      </section>
+
+      <section class="doc-sec" id="theming">
+        <span class="kicker">Theming</span>
+        <h2>CSS variables</h2>
+        <p class="desc">Every decision is a <code class="inline">--clay-*</code> custom property. Override them globally, per section or per component. Colour ramps, soft tints and hover states are derived automatically.</p>
+<pre data-lang="css" data-label="theme.css">
+:root {
+  --clay-primary: #e11d48;         /* brand colour, ramps derive from it */
+  --clay-on-primary: #ffffff;      /* text on primary */
+  --clay-radius: 16px;             /* base radius, sm/lg/xl derive from it */
+  --clay-font: "Sora", system-ui, sans-serif;
+  --clay-font-scale: 1.05;         /* multiply the entire type ramp */
+  --clay-density: 0.9;             /* compact controls and spacing */
+  --clay-shadow-strength: 1.4;     /* deeper shadows */
+}
+
+/* Scoped: a marketing band with its own personality */
+.promo { --clay-primary: #059669; --clay-btn-radius: 999px; }
+</pre>
+        <div class="api-wrap"><table class="api">
+          <thead><tr><th>Group</th><th>Key tokens</th></tr></thead>
+          <tbody>
+            <tr><td>Colour</td><td><code class="inline">--clay-primary</code> <code class="inline">--clay-on-primary</code> <code class="inline">--clay-secondary</code> <code class="inline">--clay-success|warning|danger|info</code> <code class="inline">--clay-bg</code> <code class="inline">--clay-surface[-2|-3]</code> <code class="inline">--clay-border[-strong]</code> <code class="inline">--clay-text[-2|-3]</code> <code class="inline">--clay-primary-50…900</code></td></tr>
+            <tr><td>Shape</td><td><code class="inline">--clay-radius[-xs|-sm|-lg|-xl|-full]</code> <code class="inline">--clay-btn-radius</code> <code class="inline">--clay-input-radius</code> <code class="inline">--clay-card-radius</code> <code class="inline">--clay-dialog-radius</code></td></tr>
+            <tr><td>Type</td><td><code class="inline">--clay-font</code> <code class="inline">--clay-font-display</code> <code class="inline">--clay-font-mono</code> <code class="inline">--clay-font-scale</code> <code class="inline">--clay-fs-display…caption</code> <code class="inline">--clay-fw-*</code></td></tr>
+            <tr><td>Space</td><td><code class="inline">--clay-space</code> <code class="inline">--clay-density</code> <code class="inline">--clay-control-h-base</code></td></tr>
+            <tr><td>Depth</td><td><code class="inline">--clay-shadow-1…4</code> <code class="inline">--clay-shadow-strength</code> <code class="inline">--clay-glass</code></td></tr>
+            <tr><td>Motion</td><td><code class="inline">--clay-dur</code> <code class="inline">--clay-dur-slow</code> <code class="inline">--clay-ease</code> <code class="inline">--clay-ease-spring</code> <code class="inline">--clay-press-scale</code> <code class="inline">--clay-ripple</code></td></tr>
+            <tr><td>Components</td><td><code class="inline">--clay-switch-w|h|thumb</code> <code class="inline">--clay-range-*</code> <code class="inline">--clay-seg-*</code> <code class="inline">--clay-tab-ind-*</code> <code class="inline">--clay-input-focus</code> <code class="inline">--clay-list-sep-inset</code> …</td></tr>
+          </tbody>
+        </table></div>
+      </section>
+
+      <section class="doc-sec" id="js-api">
+        <span class="kicker">Theming</span>
+        <h2>JavaScript API</h2>
+        <p class="desc">The runtime is optional, and every component works as plain HTML and CSS. The runtime adds live theming, OS detection, toasts, dialog animation, menus, tabs, the calendar and token export.</p>
+<pre data-lang="js" data-label="app.js">
+// Boot: reads data-clay-* attributes and applies defaults
+Clay.init({ os: 'auto', mode: 'auto', theme: 'ocean' });
+
+// Theme live, null falls back to the platform preset
+Clay.setTheme({ primary: '#7c3aed', radius: 18, font: 'Plus Jakarta Sans', density: 0.9 });
+Clay.setOS('android');          // switch preset (resets colour/shape/type overrides)
+Clay.setMode('dark');
+Clay.onChange(theme => localStorage.setItem('theme', JSON.stringify(theme)));
+
+// Feedback
+Clay.toast({ title: 'Saved', message: 'All changes synced', type: 'success', action: { label: 'Undo', onClick: undo } });
+Clay.dialog.open('#confirm');
+
+// Tokens
+const t = Clay.tokens();        // resolved values for the current theme
+const swift = Clay.export('swiftui');
+</pre>
+        <div class="api-wrap"><table class="api">
+          <thead><tr><th>Method</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code class="inline">init(options)</code></td><td>Boot Clay on <code class="inline">options.target</code> (default <code class="inline">&lt;html&gt;</code>). Options: <code class="inline">os, mode, theme, primary, secondary, radius, font, fontScale, density, space, shadow, motion</code>.</td></tr>
+            <tr><td><code class="inline">setTheme(patch)</code></td><td>Merge and apply theme options. Pass <code class="inline">theme: 'rose'</code> to load a brand theme. Returns the new theme.</td></tr>
+            <tr><td><code class="inline">setOS(os, keep?)</code></td><td>Switch platform preset. Pass <code class="inline">keep = true</code> to keep colour, shape and type overrides.</td></tr>
+            <tr><td><code class="inline">setMode(mode)</code></td><td><code class="inline">'light' | 'dark' | 'auto'</code>. Auto follows the system setting live.</td></tr>
+            <tr><td><code class="inline">getTheme() / reset()</code></td><td>Read the current options, or return to the platform defaults.</td></tr>
+            <tr><td><code class="inline">onChange(fn)</code></td><td>Subscribe to theme changes. Returns an unsubscribe function.</td></tr>
+            <tr><td><code class="inline">detectOS()</code></td><td>Best guess of the visitor's platform.</td></tr>
+            <tr><td><code class="inline">tokens(el?)</code></td><td>Resolved tokens (hex colours, px sizes) for any element.</td></tr>
+            <tr><td><code class="inline">export(format)</code></td><td><code class="inline">css, scss, json, figma, tailwind, swiftui, compose, flutter, xaml, gtk</code></td></tr>
+            <tr><td><code class="inline">toast(opts)</code></td><td><code class="inline">{ title, message, type, action, duration, position: 'corner'|'top'|'bottom' }</code></td></tr>
+            <tr><td><code class="inline">dialog.open / close</code></td><td>Animated open and close for any <code class="inline">&lt;dialog class="clay-dialog"&gt;</code>.</td></tr>
+            <tr><td><code class="inline">icon(name)</code></td><td>Inline SVG string for a built-in icon.</td></tr>
+            <tr><td><code class="inline">contrast(hex) / contrastRatio(a, b)</code></td><td>Pick readable text colour and check WCAG ratios.</td></tr>
+            <tr><td><code class="inline">upgrade(scope?)</code></td><td>Hydrate icons, sliders and calendars in content added later (e.g. after a SPA route change).</td></tr>
+          </tbody>
+        </table></div>
+        <h3 class="sub">Declarative attributes</h3>
+        <div class="api-wrap"><table class="api">
+          <thead><tr><th>Attribute</th><th>Effect</th></tr></thead>
+          <tbody>
+            <tr><td><code class="inline">data-clay-open="#id"</code></td><td>Opens a dialog, sheet or drawer.</td></tr>
+            <tr><td><code class="inline">data-clay-close</code></td><td>Closes the nearest dialog (its value becomes <code class="inline">returnValue</code>).</td></tr>
+            <tr><td><code class="inline">data-clay-menu</code></td><td>Toggles the parent <code class="inline">.clay-dropdown</code>.</td></tr>
+            <tr><td><code class="inline">data-clay-toast="Title"</code></td><td>Shows a toast. Add <code class="inline">-message</code>, <code class="inline">-type</code> and <code class="inline">-action</code> variants.</td></tr>
+            <tr><td><code class="inline">data-clay-tooltip="Text"</code></td><td>CSS tooltip on hover or focus.</td></tr>
+            <tr><td><code class="inline">data-clay-icon="name"</code></td><td>Put it on an <code class="inline">&lt;i&gt;</code> to render an icon.</td></tr>
+            <tr><td><code class="inline">data-clay-calendar</code></td><td>Renders an interactive month view.</td></tr>
+          </tbody>
+        </table></div>
+      </section>
+
+      <section class="doc-sec" id="export">
+        <span class="kicker">Theming</span>
+        <h2>Token export</h2>
+        <p class="desc">This is your current theme, compiled live for every platform. Change anything in the Foundations panel on the components page and the code below updates.</p>
+        <div class="code" id="exportBlock">
+          <div class="code-head"><div class="tabs" role="tablist" id="exportTabs"></div><span class="sp"></span><button class="copy-btn" type="button" id="exportCopy"></button></div>
+          <pre data-lenis-prevent><code id="exportCode"></code></pre>
+        </div>
+      </section>
+
+      <section class="doc-sec" id="frameworks">
+        <span class="kicker">Guides</span>
+        <h2>Frameworks</h2>
+        <p class="desc">Clay is plain classes, so every framework just works. Here are the idiomatic setups.</p>
+<pre data-lang="js" data-label="React / Next.js — app/layout.tsx">
+import 'clay-ds/dist/clay.css';
+import Clay from 'clay-ds';
+import { useEffect } from 'react';
+
+export default function RootLayout({ children }) {
+  useEffect(() => { Clay.init({ os: 'auto', mode: 'auto' }); }, []);
+  return (
+    &lt;html lang="en" data-clay-os="web" data-clay-mode="light"&gt;
+      &lt;body className="clay"&gt;{children}&lt;/body&gt;
+    &lt;/html&gt;
+  );
+}
+
+// Anywhere:
+export const Button = ({ variant, ...p }) =&gt;
+  &lt;button className={`clay-btn ${variant ? 'clay-btn--' + variant : ''}`} {...p} /&gt;;
+</pre>
+<pre data-lang="js" data-label="Vue 3 — main.ts">
+import 'clay-ds/dist/clay.css';
+import Clay from 'clay-ds';
+createApp(App).mount('#app');
+Clay.init({ os: 'auto' });
+// &lt;button class="clay-btn clay-btn--tonal" @click="save"&gt;Save&lt;/button&gt;
+</pre>
+<pre data-lang="js" data-label="Svelte / SvelteKit — +layout.svelte">
+&lt;script&gt;
+  import 'clay-ds/dist/clay.css';
+  import Clay from 'clay-ds';
+  import { onMount } from 'svelte';
+  onMount(() =&gt; Clay.init({ os: 'auto', mode: 'auto' }));
+&lt;/script&gt;
+&lt;slot /&gt;
+</pre>
+<pre data-lang="js" data-label="Angular — angular.json">
+"styles": ["node_modules/clay-ds/dist/clay.css", "src/styles.css"],
+"scripts": ["node_modules/clay-ds/dist/clay.js"]
+</pre>
+<pre data-lang="js" data-label="Tailwind — tailwind.config.js">
+// Use Clay tokens as Tailwind utilities: bg-primary, rounded-lg, text-foreground-muted…
+module.exports = {
+  presets: [require('clay-ds/tailwind')],
+  content: ['./src/**/*.{html,js,jsx,ts,tsx,vue,svelte}'],
+};
+</pre>
+      </section>
+
+      <section class="doc-sec" id="native">
+        <span class="kicker">Guides</span>
+        <h2>Native apps</h2>
+        <p class="desc">Design in the browser and ship natively. Export your theme from the Foundations panel, drop the file into your project and reference the tokens.</p>
+        <div class="api-wrap"><table class="api">
+          <thead><tr><th>Platform</th><th>Export</th><th>Use it</th></tr></thead>
+          <tbody>
+            <tr><td>iOS / iPadOS / macOS</td><td><code class="inline">ClayTheme.swift</code></td><td><code class="inline">Text("Hi").foregroundStyle(Clay.Colors.primary)</code></td></tr>
+            <tr><td>Android</td><td><code class="inline">ClayTheme.kt</code></td><td>Wrap your app in <code class="inline">ClayTheme { … }</code> (Material 3)</td></tr>
+            <tr><td>Flutter (all OS)</td><td><code class="inline">clay_theme.dart</code></td><td><code class="inline">MaterialApp(theme: clayTheme)</code></td></tr>
+            <tr><td>Windows</td><td><code class="inline">ClayTheme.xaml</code></td><td>Merge into <code class="inline">App.xaml</code> resources (WinUI 3 / WPF)</td></tr>
+            <tr><td>Linux</td><td><code class="inline">gtk.css</code></td><td>Overrides libadwaita named colours (GTK 4)</td></tr>
+            <tr><td>Figma</td><td><code class="inline">clay.tokens.json</code></td><td>Import with Tokens Studio or Variables (DTCG format)</td></tr>
+            <tr><td>React Native / Expo</td><td><code class="inline">clay-tokens.json</code></td><td><code class="inline">StyleSheet.create({ btn: { backgroundColor: t.color.primary } })</code></td></tr>
+          </tbody>
+        </table></div>
+      </section>
+
+      <section class="doc-sec" id="accessibility">
+        <span class="kicker">Guides</span>
+        <h2>Accessibility</h2>
+        <p class="desc">Clay targets WCAG 2.2 AA. Here's what's built in and what you're responsible for.</p>
+        <div class="api-wrap"><table class="api">
+          <thead><tr><th>Built in</th><th>Your part</th></tr></thead>
+          <tbody>
+            <tr><td>Native elements (<code class="inline">button</code>, <code class="inline">dialog</code>, <code class="inline">details</code>, inputs) with correct semantics</td><td>Give icon-only buttons an <code class="inline">aria-label</code></td></tr>
+            <tr><td>Visible focus rings on every interactive element</td><td>Pair every input with a <code class="inline">&lt;label&gt;</code></td></tr>
+            <tr><td>Keyboard support for tabs, menus, dialogs and OTP fields</td><td>Use <code class="inline">aria-invalid</code> and <code class="inline">aria-describedby</code> for errors</td></tr>
+            <tr><td>Auto contrast for text on primary, plus a contrast checker in the Foundations panel</td><td>Check custom brand colours reach 4.5:1</td></tr>
+            <tr><td><code class="inline">prefers-reduced-motion</code> and <code class="inline">prefers-color-scheme</code> support</td><td>Keep touch targets ≥ 44px (density ≥ 1 on mobile)</td></tr>
+          </tbody>
+        </table></div>
+      </section>
+
+      <section class="doc-sec" id="browsers">
+        <span class="kicker">Guides</span>
+        <h2>Browser support</h2>
+        <p class="desc">Clay works in all evergreen browsers: Chrome, Edge and Opera 111+, Safari 16.2+ (iOS 16.2+) and Firefox 113+. It relies on <code class="inline">color-mix()</code>, <code class="inline">&lt;dialog&gt;</code>, <code class="inline">:focus-visible</code> and CSS custom properties. In Android WebView and WKWebView it follows the system engine.</p>
+      </section>
+
+      <section class="doc-sec" id="changelog">
+        <span class="kicker">Release notes</span>
+        <h2>Changelog</h2>
+        <ol class="clay-timeline clay" data-clay-mode="dark" style="background:transparent;color:var(--s-text)">
+          <li><b>1.0.0</b> · October 2026<div style="color:var(--s-text-2);font-size:14px">First release: six platform presets, 180+ components, per-platform catalogs, live Foundations panel, 10 export formats, 80+ icons.</div></li>
+          <li><b>Next</b> · planned<div style="color:var(--s-text-2);font-size:14px">visionOS and watchOS presets, KDE Breeze, RTL showcase, web components wrapper, Figma library.</div></li>
+        </ol>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-bottom" style="margin-top:0;border:0;padding-top:0"><span>© 2026 Clay Design System · MIT License</span><span><a href="index.html" style="display:inline">Home</a> · <a href="components.html" style="display:inline">Components</a> · <a href="foundations.html" style="display:inline">Foundations</a></span></div>
+    </div>
+  </footer>
+
+  <script src="dist/clay.js?v=4"></script>
+  <script src="assets/js/site.js?v=4"></script>
+  <script>
+    (function () {
+      var F = [['css', 'CSS', 'css'], ['scss', 'SCSS', 'scss'], ['tailwind', 'Tailwind', 'js'], ['json', 'JSON', 'js'], ['figma', 'Figma', 'js'], ['swiftui', 'SwiftUI', 'js'], ['compose', 'Compose', 'js'], ['flutter', 'Flutter', 'js'], ['xaml', 'WinUI', 'xml'], ['gtk', 'GTK', 'gtk']];
+      var cur = 'css', tabs = document.getElementById('exportTabs'), code = document.getElementById('exportCode'), cp = document.getElementById('exportCopy');
+      tabs.innerHTML = F.map(function (f) { return '<button role="tab" type="button" data-f="' + f[0] + '" aria-selected="' + (f[0] === cur) + '">' + f[1] + '</button>'; }).join('');
+      cp.innerHTML = Clay.icon('copy') + 'Copy';
+      function render() { var f = F.filter(function (x) { return x[0] === cur; })[0]; code.innerHTML = ClaySite.hl(Clay.export(cur), f[2]); }
+      tabs.addEventListener('click', function (e) { var b = e.target.closest('[data-f]'); if (!b) return; cur = b.getAttribute('data-f'); tabs.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-selected', x === b); }); render(); });
+      cp.onclick = function () { ClaySite.copy(Clay.export(cur), cp); };
+      document.addEventListener('clay:themechange', function () { requestAnimationFrame(render); });
+      render();
+    })();
+  </script>
+</body>
+</html>

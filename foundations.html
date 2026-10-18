@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en" data-clay-os="web" data-clay-mode="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Foundations · Clay Design System</title>
+  <meta name="description" content="Clay foundations: colour, typography, spacing, radius, elevation, motion, icons, breakpoints and platform specs for Web, iOS, Android, macOS, Windows and Linux." />
+  <meta name="theme-color" content="#05050f" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="dist/clay.css?v=4" />
+  <link rel="stylesheet" href="assets/css/site.css?v=4" />
+</head>
+<body class="site">
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas id="space" aria-hidden="true"></canvas>
+  <div class="nebula" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <div class="nav-inner">
+        <a href="index.html" class="brand" aria-label="Clay home"><span class="brand-mark"></span><span>Clay</span></a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="components.html">Components</a>
+          <a href="foundations.html" aria-current="page">Foundations</a>
+          <a href="docs.html">Docs</a>
+          <a href="docs.html#install">Install</a>
+        </nav>
+        <span class="nav-spacer"></span>
+        <span class="ver hide-sm">v1.0.0</span>
+        <a class="icon-btn hide-sm" href="https://github.com/litu173/clay-design-system" aria-label="GitHub"><i data-icon="code"></i></a>
+        <a class="btn btn-primary btn-sm hide-sm" href="docs.html#install">Get started</a>
+        <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menuPanel"></button>
+      </div>
+    </div>
+  </header>
+  <nav class="menu-panel" id="menuPanel" aria-label="Mobile" hidden>
+    <a href="components.html"><i data-icon="grid"></i>Components</a>
+    <a href="foundations.html"><i data-icon="layers"></i>Foundations</a>
+    <a href="docs.html"><i data-icon="file"></i>Docs</a>
+    <a href="docs.html#install"><i data-icon="download"></i>Install</a>
+    <a href="components.html#foundations"><i data-icon="palette"></i>Theme playground</a>
+  </nav>
+
+  <main id="main" class="wrap docs">
+    <aside class="docs-side" aria-label="Foundations">
+      <h4>Foundations</h4>
+      <a href="#color">Colour</a>
+      <a href="#ramp">Primary ramp</a>
+      <a href="#typography">Typography</a>
+      <a href="#spacing">Spacing &amp; density</a>
+      <a href="#radius">Radius</a>
+      <a href="#elevation">Elevation</a>
+      <a href="#motion">Motion</a>
+      <a href="#icons">Icons</a>
+      <a href="#layout">Layout &amp; breakpoints</a>
+      <a href="#platforms">Platform specs</a>
+      <a href="#tokens">Token reference</a>
+    </aside>
+
+    <div class="docs-main">
+      <div class="docs-hero">
+        <span class="kicker">Foundations</span>
+        <h1>The atoms <em class="serif grad-text">behind everything.</em></h1>
+        <p>Every value here is a live token. Switch platform here, or use the Foundations panel on the components page, and the whole page re-renders with real computed values.</p>
+      </div>
+
+      <div class="toolbar">
+        <div class="seg" data-sync-os role="group" aria-label="Platform"></div>
+        <div class="seg" data-sync-mode role="group" aria-label="Appearance"></div>
+        <span class="sp"></span>
+        <a class="btn btn-sm btn-grad" href="components.html"><i data-icon="palette"></i>Playground</a>
+      </div>
+
+      <section class="doc-sec" id="color">
+        <span class="kicker">Colour</span>
+        <h2>Colour system</h2>
+        <p class="desc">There are seven brand and semantic colours plus nine neutrals per mode. Click a swatch to copy its token.</p>
+        <h3 class="sub">Brand &amp; semantic</h3>
+        <div class="swatches" data-swatches="primary,on-primary,secondary,success,warning,danger,info"></div>
+        <h3 class="sub">Neutrals</h3>
+        <div class="swatches" data-swatches="bg,surface,surface-2,surface-3,elevated,border,border-strong,text,text-2,text-3"></div>
+      </section>
+
+      <section class="doc-sec" id="ramp">
+        <span class="kicker">Colour</span>
+        <h2>Primary ramp</h2>
+        <p class="desc">Ten steps are derived automatically from <code class="inline">--clay-primary</code> with <code class="inline">color-mix(in oklab)</code>. Change one colour and the whole ramp follows, in light and dark.</p>
+        <div class="ramp" id="ramp-el"></div>
+      </section>
+
+      <section class="doc-sec" id="typography">
+        <span class="kicker">Type</span>
+        <h2>Typography</h2>
+        <p class="desc">A semantic eight-step scale. Each platform maps it to its native ramp (iOS Dynamic Type, Material type scale, Fluent ramp, Adwaita headings), and <code class="inline">--clay-font-scale</code> multiplies all of it.</p>
+        <div class="demo" data-title="Type scale (live)">
+          <div class="demo-stage clay col" style="gap:0" id="typeStage">
+            <div class="type-row"><small data-fs="display">Display</small><span class="clay-display">Clear as glass</span></div>
+            <div class="type-row"><small data-fs="h1">Heading 1</small><span class="clay-h1">Design for everyone</span></div>
+            <div class="type-row"><small data-fs="h2">Heading 2</small><span class="clay-h2">Native on every OS</span></div>
+            <div class="type-row"><small data-fs="h3">Heading 3</small><span class="clay-h3">Tokens all the way down</span></div>
+            <div class="type-row"><small data-fs="title">Title</small><span class="clay-title">Section and card titles</span></div>
+            <div class="type-row"><small data-fs="body">Body</small><span class="clay-body">The quick brown fox jumps over the lazy dog. Readable, calm, comfortable.</span></div>
+            <div class="type-row"><small data-fs="label">Label</small><span class="clay-label">Buttons, inputs and navigation</span></div>
+            <div class="type-row" style="border:0"><small data-fs="caption">Caption</small><span class="clay-caption">Helper text, timestamps and metadata</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-sec" id="spacing">
+        <span class="kicker">Space</span>
+        <h2>Spacing &amp; density</h2>
+        <p class="desc">Spacing is a 4px base unit multiplied by <code class="inline">--clay-density</code>. Use 0.8 for watches and data-dense dashboards, and 1.2 or more for TV, kiosk and touch-first surfaces.</p>
+        <div class="glass" style="padding:24px" id="spaceScale"></div>
+      </section>
+
+      <section class="doc-sec" id="radius">
+        <span class="kicker">Shape</span>
+        <h2>Corner radius</h2>
+        <p class="desc">Five radii are derived from one base. Fluent uses 4px, macOS and GNOME 6px, and iOS and Material 12px+. Material buttons stay pill-shaped.</p>
+        <div class="demo" data-title="Radius scale">
+          <div class="demo-stage clay col"><div class="radius-grid" style="width:100%">
+            <div style="border-radius:var(--clay-radius-xs)">xs</div><div style="border-radius:var(--clay-radius-sm)">sm</div><div style="border-radius:var(--clay-radius)">md</div><div style="border-radius:var(--clay-radius-lg)">lg</div><div style="border-radius:var(--clay-radius-xl)">xl</div><div style="border-radius:999px">full</div>
+          </div></div>
+        </div>
+      </section>
+
+      <section class="doc-sec" id="elevation">
+        <span class="kicker">Depth</span>
+        <h2>Elevation</h2>
+        <p class="desc">Four shadow levels. <code class="inline">--clay-shadow-strength</code> scales them all, from 0 for flat to 2.5 for dramatic.</p>
+        <div class="demo" data-title="Shadows">
+          <div class="demo-stage clay col" style="background:var(--clay-bg)"><div class="elev-grid" style="width:100%">
+            <div style="box-shadow:var(--clay-shadow-1)">shadow-1</div><div style="box-shadow:var(--clay-shadow-2)">shadow-2</div><div style="box-shadow:var(--clay-shadow-3)">shadow-3</div><div style="box-shadow:var(--clay-shadow-4)">shadow-4</div>
+          </div></div>
+        </div>
+      </section>
+
+      <section class="doc-sec" id="motion">
+        <span class="kicker">Motion</span>
+        <h2>Motion</h2>
+        <p class="desc">Two durations and two curves. Everything respects <code class="inline">prefers-reduced-motion</code> and the <code class="inline">data-clay-motion="off"</code> switch. Click a card to play it.</p>
+        <div class="motion-grid">
+          <div class="motion-card" data-ease="cubic-bezier(0.22,1,0.36,1)" data-dur="600"><b>--clay-ease</b><div class="clay-caption" style="color:var(--s-text-3)">Expo out · default</div><div class="track"><span class="ball"></span></div></div>
+          <div class="motion-card" data-ease="cubic-bezier(0.34,1.56,0.64,1)" data-dur="600"><b>--clay-ease-spring</b><div class="clay-caption" style="color:var(--s-text-3)">Overshoot · toggles</div><div class="track"><span class="ball"></span></div></div>
+          <div class="motion-card" data-ease="cubic-bezier(0.2,0,0,1)" data-dur="500"><b>Material emphasized</b><div class="clay-caption" style="color:var(--s-text-3)">Android</div><div class="track"><span class="ball"></span></div></div>
+          <div class="motion-card" data-ease="cubic-bezier(0,0,0,1)" data-dur="367"><b>Fluent decelerate</b><div class="clay-caption" style="color:var(--s-text-3)">Windows</div><div class="track"><span class="ball"></span></div></div>
+        </div>
+      </section>
+
+      <section class="doc-sec" id="icons">
+        <span class="kicker">Iconography</span>
+        <h2>Icons</h2>
+        <p class="desc">There are <span id="iconCount"></span> built-in 24px stroke icons that inherit <code class="inline">currentColor</code>. Use <code class="inline">&lt;i data-clay-icon="name"&gt;&lt;/i&gt;</code> or <code class="inline">Clay.icon('name')</code>. Click to copy. For 1,200+ more, pair Clay with <a href="https://github.com/litu173/iconli" style="color:var(--s-accent)">IconLi</a>.</p>
+        <div class="icon-grid" id="iconGrid"></div>
+      </section>
+
+      <section class="doc-sec" id="layout">
+        <span class="kicker">Layout</span>
+        <h2>Layout &amp; breakpoints</h2>
+        <p class="desc">Use the 12-column grid (<code class="inline">.clay-cols</code> + <code class="inline">.clay-span-*</code>), the auto-fill grid (<code class="inline">.clay-grid</code>) and flex stacks. Breakpoints are tuned to real device classes.</p>
+        <div class="api-wrap"><table class="api">
+          <thead><tr><th>Device class</th><th>Range</th><th>Columns</th><th>Gutter</th><th>Density</th></tr></thead>
+          <tbody>
+            <tr><td>Watch</td><td>&lt; 240px</td><td>1</td><td>8px</td><td>0.8</td></tr>
+            <tr><td>Phone</td><td>240 – 599px</td><td>4</td><td>16px</td><td>1</td></tr>
+            <tr><td>Foldable / small tablet</td><td>600 – 839px</td><td>8</td><td>20px</td><td>1</td></tr>
+            <tr><td>Tablet / laptop</td><td>840 – 1199px</td><td>12</td><td>24px</td><td>1</td></tr>
+            <tr><td>Desktop</td><td>1200 – 1599px</td><td>12</td><td>24px</td><td>0.9 – 1</td></tr>
+            <tr><td>Wide / TV</td><td>≥ 1600px</td><td>12 – 16</td><td>32px</td><td>1.2</td></tr>
+          </tbody>
+        </table></div>
+        <div class="demo" data-title="12-column grid">
+          <div class="demo-stage clay col">
+            <div class="clay-cols" style="width:100%">
+              <div class="clay-span-8 clay-card clay-card--filled clay-p-4 clay-label">span-8</div><div class="clay-span-4 clay-card clay-card--filled clay-p-4 clay-label">span-4</div>
+              <div class="clay-span-4 clay-card clay-card--filled clay-p-4 clay-label">span-4</div><div class="clay-span-4 clay-card clay-card--filled clay-p-4 clay-label">span-4</div><div class="clay-span-4 clay-card clay-card--filled clay-p-4 clay-label">span-4</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-sec" id="platforms">
+        <span class="kicker">Specs</span>
+        <h2>Platform specs</h2>
+        <p class="desc">The defaults each preset ships with, all drawn from the platform's official guidelines.</p>
+        <div class="api-wrap"><table class="api cmp-table">
+          <thead><tr><th>Token</th><th>Web</th><th>iOS</th><th>Android</th><th>macOS</th><th>Windows</th><th>Linux</th></tr></thead>
+          <tbody>
+            <tr><td>Guideline</td><td>Clay</td><td>HIG</td><td>Material 3</td><td>HIG</td><td>Fluent 2</td><td>Adwaita</td></tr>
+            <tr><td>Accent</td><td>#6d5efc</td><td>#007aff</td><td>#6750a4</td><td>#007aff</td><td>#0f6cbd</td><td>#3584e4</td></tr>
+            <tr><td>Typeface</td><td>Inter</td><td>SF Pro</td><td>Roboto</td><td>SF Pro</td><td>Segoe UI Variable</td><td>Cantarell</td></tr>
+            <tr><td>Body size</td><td>16px</td><td>17pt</td><td>16sp</td><td>13pt</td><td>14px</td><td>15px</td></tr>
+            <tr><td>Control height</td><td>40</td><td>44</td><td>40</td><td>28</td><td>32</td><td>34</td></tr>
+            <tr><td>Button radius</td><td>12</td><td>12</td><td>full</td><td>6</td><td>4</td><td>6</td></tr>
+            <tr><td>Card radius</td><td>17</td><td>14</td><td>12</td><td>10</td><td>8</td><td>12</td></tr>
+            <tr><td>Dialog radius</td><td>24</td><td>14</td><td>28</td><td>12</td><td>8</td><td>14</td></tr>
+            <tr><td>Switch</td><td>44×26</td><td>51×31</td><td>52×32</td><td>38×22</td><td>40×20</td><td>48×26</td></tr>
+            <tr><td>Input style</td><td>Outlined</td><td>Filled</td><td>Outlined</td><td>Bezel</td><td>Underline accent</td><td>Filled</td></tr>
+            <tr><td>Press feedback</td><td>Scale .97</td><td>Scale .98</td><td>Ripple</td><td>Darken</td><td>Darken</td><td>Darken</td></tr>
+          </tbody>
+        </table></div>
+      </section>
+
+      <section class="doc-sec" id="tokens">
+        <span class="kicker">Reference</span>
+        <h2>Token reference</h2>
+        <p class="desc">These are the live computed values for the current platform, mode and customisations, read straight from <code class="inline">Clay.tokens()</code>.</p>
+        <div id="tokenDump"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-bottom" style="margin-top:0;border:0;padding-top:0"><span>© 2026 Clay Design System · MIT License</span><span><a href="index.html" style="display:inline">Home</a> · <a href="components.html" style="display:inline">Components</a> · <a href="docs.html" style="display:inline">Docs</a></span></div>
+    </div>
+  </footer>
+
+  <script src="dist/clay.js?v=4"></script>
+  <script src="assets/js/site.js?v=4"></script>
+  <script>
+    (function () {
+      var root = document.documentElement;
+      function tok(k) { return getComputedStyle(root).getPropertyValue('--clay-' + k).trim(); }
+      function render() {
+        document.querySelectorAll('[data-swatches]').forEach(function (g) {
+          g.innerHTML = g.getAttribute('data-swatches').split(',').map(function (k) {
+            var hex = Clay.toHex(tok(k));
+            return '<button class="swatch" type="button" data-copy="var(--clay-' + k + ')"><i style="background:var(--clay-' + k + ')"></i><div><b>' + k + '</b><small>' + hex + '</small></div></button>';
+          }).join('');
+        });
+        var ramp = document.getElementById('ramp-el');
+        ramp.innerHTML = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900].map(function (n) {
+          var hex = Clay.toHex(tok('primary-' + n));
+          return '<div style="background:var(--clay-primary-' + n + ');color:' + Clay.contrast(hex.slice(0, 7)) + '">' + n + '</div>';
+        }).join('');
+        var t = Clay.tokens();
+        document.querySelectorAll('[data-fs]').forEach(function (s) { var k = s.getAttribute('data-fs'); s.innerHTML = s.textContent.split(' · ')[0] + ' · ' + t.font.size[k] + 'px'; });
+        document.getElementById('spaceScale').innerHTML = [1, 2, 3, 4, 5, 6, 8, 10, 12, 16].map(function (n) {
+          return '<div class="scale-row"><span style="width:70px">space-' + n + '</span><i style="width:' + t.space[n] + 'px"></i><span>' + (+t.space[n].toFixed(1)) + 'px</span></div>';
+        }).join('');
+        var dump = document.getElementById('tokenDump'); dump.innerHTML = '';
+        dump.appendChild(ClaySite.codeBlock(Clay.export('json'), 'js', 'Clay.tokens()'));
+      }
+      document.addEventListener('clay:themechange', function () { requestAnimationFrame(render); });
+      render();
+      document.addEventListener('click', function (e) {
+        var s = e.target.closest('[data-copy]'); if (s) ClaySite.copy(s.getAttribute('data-copy'));
+        var m = e.target.closest('.motion-card');
+        if (m) {
+          var b = m.querySelector('.ball'); b.style.transition = 'left ' + m.getAttribute('data-dur') + 'ms ' + m.getAttribute('data-ease');
+          m.classList.toggle('play');
+        }
+      });
+      var names = Object.keys(Clay.icons);
+      document.getElementById('iconCount').textContent = names.length;
+      document.getElementById('iconGrid').innerHTML = names.map(function (n) { return '<button class="icon-tile" type="button" data-copy=\'<i data-clay-icon="' + n + '"></i>\' title="' + n + '">' + Clay.icon(n) + n + '</button>'; }).join('');
+    })();
+  </script>
+</body>
+</html>
