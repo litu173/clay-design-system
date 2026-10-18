@@ -4,81 +4,67 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Components · Clay Design System</title>
-  <meta name="description" content="Clay components for Web, iOS, Android, macOS, Windows and Linux. Each platform shows its own native set, with a live Foundations panel for colour, type, radius, density and more." />
+  <meta name="description" content="Clay components for Web, iOS, Android, macOS, Windows and Linux, grouped into pages with live states and a Foundations panel for colour, type, radius, density and more." />
   <meta name="theme-color" content="#ffffff" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="dist/clay.css?v=4" />
-  <link rel="stylesheet" href="assets/css/site.css?v=4" />
-  <link rel="stylesheet" href="assets/css/app.css?v=5" />
+  <link rel="stylesheet" href="dist/clay.css?v=7" />
+  <link rel="stylesheet" href="assets/css/site.css?v=7" />
+  <link rel="stylesheet" href="assets/css/app.css?v=7" />
   <script>try { var t = JSON.parse(localStorage.getItem('clay-site-theme') || '{}'); var m = t.mode === 'auto' ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : t.mode; if (m === 'dark') document.documentElement.setAttribute('data-pre-chrome', 'dark'); } catch (e) {}</script>
 </head>
 <body class="site app">
   <script>if (document.documentElement.getAttribute('data-pre-chrome') === 'dark') document.body.setAttribute('data-chrome', 'dark');</script>
-  <a class="skip" href="#appMain">Skip to components</a>
+  <a class="skip" href="#dashMain">Skip to components</a>
 
-  <header class="nav" id="nav">
-    <div class="wrap">
-      <div class="nav-inner">
-        <a href="index.html" class="brand" aria-label="Clay home"><span class="brand-mark"></span><span>Clay</span></a>
-        <nav class="nav-links" aria-label="Primary">
-          <a href="components.html" aria-current="page">Components</a>
-          <a href="foundations.html">Foundations</a>
-          <a href="docs.html">Docs</a>
-          <a href="docs.html#install">Install</a>
-        </nav>
-        <span class="nav-spacer"></span>
-        <span class="ver hide-sm">v1.0.0</span>
-        <a class="icon-btn hide-sm" href="https://github.com/litu173/clay-design-system" aria-label="GitHub"><i data-icon="code"></i></a>
-        <a class="btn btn-primary btn-sm hide-sm" href="docs.html#install">Get started</a>
-        <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menuPanel"></button>
-      </div>
+  <header class="dash-header">
+    <button class="dash-icon-btn dash-burger" type="button" data-a-open="left" aria-label="Browse components"><i data-icon="menu"></i></button>
+    <a href="index.html" class="dash-brand" aria-label="Clay home"><img class="brand-logo" src="assets/brand/clay-mark.svg" width="28" height="28" alt=""><span>Clay</span><span class="dash-ver">1.0</span></a>
+    <nav class="dash-nav" aria-label="Primary">
+      <a href="components.html" aria-current="page">Components</a>
+      <a href="foundations.html">Foundations</a>
+      <a href="docs.html">Docs</a>
+      <a href="docs.html#install">Install</a>
+    </nav>
+    <div class="dash-search" role="search">
+      <i data-icon="search"></i>
+      <input type="search" placeholder="Search components" data-a-search aria-label="Search components" autocomplete="off">
+      <kbd>/</kbd>
+      <ul class="dash-results" data-a-results role="listbox" hidden></ul>
     </div>
+    <span class="dash-spacer"></span>
+    <div class="dash-os" data-a-oswitch role="group" aria-label="Platform"></div>
+    <button class="dash-icon-btn" type="button" data-a-mode aria-label="Toggle dark mode"></button>
+    <a class="dash-icon-btn dash-hide-sm" href="https://github.com/litu173/clay-design-system" aria-label="GitHub"><i data-icon="code"></i></a>
+    <button class="dash-icon-btn dash-found-btn" type="button" data-a-open="right" aria-label="Foundations"><i data-icon="palette"></i></button>
+    <a class="dash-cta dash-hide-sm" href="docs.html#install">Get started</a>
   </header>
-  <nav class="menu-panel" id="menuPanel" aria-label="Mobile" hidden>
-    <a href="index.html"><i data-icon="home"></i>Home</a>
-    <a href="foundations.html"><i data-icon="layers"></i>Foundations</a>
-    <a href="docs.html"><i data-icon="file"></i>Docs</a>
-    <a href="docs.html#install"><i data-icon="download"></i>Install</a>
-  </nav>
 
-  <div class="app-shell">
-    <aside class="app-left" id="appLeft" aria-label="Component index">
-      <label class="a-search"><i data-icon="search"></i><input type="search" placeholder="Search components" data-a-search aria-label="Search components"><kbd>/</kbd></label>
+  <div class="dash">
+    <aside class="dash-left ov" id="dashLeft" aria-label="Component pages">
       <div class="a-os-pill" data-a-os></div>
       <nav data-a-nav></nav>
     </aside>
 
-    <main class="app-main" id="appMain">
-      <div class="a-head">
-        <div>
-          <span class="kicker" data-a-kicker>Components</span>
-          <h1 data-a-title>Components</h1>
-          <p data-a-sub></p>
-          <div class="a-chip-row" data-a-chips></div>
-        </div>
-        <div class="a-head-tools">
-          <button class="btn btn-sm a-toggle-left" type="button" data-a-open="left"><i data-icon="grid"></i>Browse</button>
-          <button class="btn btn-sm btn-primary a-toggle-right" type="button" data-a-open="right"><i data-icon="palette"></i>Foundations</button>
-        </div>
-      </div>
-      <div data-a-list></div>
+    <main class="dash-main ov" id="dashMain" tabindex="-1">
+      <div class="dash-page" data-a-page></div>
     </main>
 
-    <aside class="app-right" id="appRight" aria-label="Foundations"></aside>
+    <aside class="dash-right ov" id="dashRight" aria-label="Foundations"></aside>
   </div>
   <div class="a-scrim" aria-hidden="true"></div>
 
-  <script src="dist/clay.js?v=4"></script>
-  <script src="assets/js/catalog/shared.js?v=4"></script>
-  <script src="assets/js/catalog/web.js?v=4"></script>
-  <script src="assets/js/catalog/ios.js?v=4"></script>
-  <script src="assets/js/catalog/android.js?v=4"></script>
-  <script src="assets/js/catalog/desktop.js?v=4"></script>
-  <script src="assets/js/catalog/extras.js?v=4"></script>
-  <script src="assets/js/site.js?v=4"></script>
-  <script src="assets/js/app.js?v=4"></script>
+  <script src="dist/clay.js?v=7"></script>
+  <script src="assets/js/catalog/shared.js?v=7"></script>
+  <script src="assets/js/catalog/web.js?v=7"></script>
+  <script src="assets/js/catalog/ios.js?v=7"></script>
+  <script src="assets/js/catalog/android.js?v=7"></script>
+  <script src="assets/js/catalog/desktop.js?v=7"></script>
+  <script src="assets/js/catalog/extras.js?v=7"></script>
+  <script src="assets/js/catalog/groups.js?v=7"></script>
+  <script src="assets/js/site.js?v=7"></script>
+  <script src="assets/js/app.js?v=7"></script>
 </body>
 </html>

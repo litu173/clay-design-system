@@ -9,10 +9,11 @@ import vm from 'node:vm';
 const root = fileURLToPath(new URL('..', import.meta.url));
 const ctx = { window: {} };
 vm.createContext(ctx);
-for (const f of ['shared.js', 'web.js', 'ios.js', 'android.js', 'desktop.js', ...readdirSync(root + 'assets/js/catalog').filter((f) => !/^(shared|web|ios|android|desktop)\.js$/.test(f))]) {
+for (const f of ['shared.js', 'web.js', 'ios.js', 'android.js', 'desktop.js', ...readdirSync(root + 'assets/js/catalog').filter((f) => !/^(shared|web|ios|android|desktop)\.js$/.test(f)).sort((a, b) => (a === 'groups.js') - (b === 'groups.js'))]) {
   vm.runInContext(readFileSync(root + 'assets/js/catalog/' + f, 'utf8'), ctx, { filename: f });
 }
 const catalog = ctx.window.ClayCatalog;
+const groups = ctx.window.ClayGroups || [];
 
 // Each requirement: label → regex tested against "id name native-name" of components available on that OS.
 const REF = {
@@ -26,7 +27,7 @@ const REF = {
     Avatar: /avatar/, Badge: /badges/, Card: /\bcard\b/, Carousel: /carousel/, Accordion: /accordion/, Descriptions: /description/, Empty: /empty/, 'Image gallery': /gallery/, 'Image preview / lightbox': /lightbox/, List: /list-group/,
     Popover: /popover/, 'QR code': /qr/, Statistic: /stats/, Table: /data-table/, Tag: /chips/, Timeline: /timeline/, Tooltip: /tooltip/, Tour: /tour/, Tree: /\btree\b/, Kbd: /kbd/, Chart: /charts/, Kanban: /kanban/, Chat: /chat/,
     Alert: /alert/, Banner: /banner/, Drawer: /drawer/, Toast: /toast/, Modal: /dialog/, Notification: /notification/, Popconfirm: /popconfirm/, Progress: /progress/, Result: /result/, Skeleton: /skeleton/, Spin: /spinner/, Watermark: /watermark/,
-    'Context menu': /context-menu/, Menu: /\bmenu\b/, 'Cookie consent': /cookie/, 'Rich text editor': /editor/, 'Media player': /media/, 'Keyboard shortcuts': /shortcuts/, 'Emoji picker': /emoji/,
+    'Context menu': /context-menu/, Menu: /\bmenu\b/, 'Cookie consent': /cookie/, 'Rich text editor': /editor/, 'Media player': /media/, 'Keyboard shortcuts': /shortcuts/, 'Emoji picker': /emoji/, 'Event calendar': /event-calendar/, Countdown: /countdown/, 'Copy button': /copy/, 'Theme toggle': /theme-toggle/, 'Sortable list': /sortable/, 'Password strength': /password-strength|levelbar/, 'Vertical steps': /vertical-steps/, 'Load more': /load-more/,
     Hero: /hero/, Features: /features/, Pricing: /pricing/, Testimonials: /testimonial/, 'Logo cloud': /logo/, 'CTA / newsletter': /\bcta\b/, FAQ: /faq/, 'Sign in': /auth/, Contact: /contact/, Blog: /blog/, Team: /team/,
   },
   ios: {
@@ -41,14 +42,14 @@ const REF = {
     Checkbox: /checkbox/, Chips: /chips/, 'Date pickers': /calendar/, 'Time pickers': /m3-time/, Dialogs: /dialog/, 'Full-screen dialog': /fullscreen/, Divider: /divider/, Lists: /lists/, Menus: /\bmenu\b/,
     'Navigation bar': /m3-navbar/, 'Navigation drawer': /drawer/, 'Navigation rail': /rail/, 'Progress indicators': /progress/, 'Loading indicator': /loading/, Radio: /radio/, Search: /searchbar/, 'Bottom sheets': /sheet/, 'Side sheets': /sidesheet/,
     Sliders: /slider/, Snackbar: /toast|snackbar/, Switch: /switch/, Tabs: /\btabs\b/, 'Text fields': /textfields/, Tooltips: /tooltip/, 'Top app bar': /topbars/, 'Bottom app bar': /bottom-appbar/, Toolbars: /float-toolbar/,
-    Badges: /badges/, Avatar: /avatar/, Skeleton: /skeleton/, 'Media player': /media/, 'Device frame': /device/,
+    Badges: /badges/, Avatar: /avatar/, Skeleton: /skeleton/, 'Media player': /media/, 'Device frame': /device/, 'Date range picker': /date-range/, 'Vertical stepper': /vertical-steps/, 'Drag to reorder': /sortable/,
   },
   macos: {
     Window: /mac-window/, Toolbar: /mac-window/, Sidebar: /mac-sidebar/, 'Menu bar': /menubar/, 'Context menu': /context-menu|\bmenu\b/, 'Push buttons': /mac-buttons/, 'Pop-up button': /popup/, 'Pull-down button': /pull-down|dropdown/,
     Checkbox: /checkbox/, Radio: /radio/, Switch: /switch/, 'Segmented control': /segmented/, Slider: /slider/, Stepper: /stepper/, 'Text field': /text-field/, 'Search field': /search/, 'Combo box': /combobox/, 'Token field': /tags/,
     'Date picker': /calendar/, 'Colour well': /color-well/, 'Path control': /path/, 'Disclosure': /accordion/, 'Progress indicator': /progress/, 'Level indicator': /levelbar/, 'Tab view': /\btabs\b/, 'Table view': /table/,
     'Outline view': /tree/, 'Column view': /cascader/, 'Split view': /splitter/, Popover: /popover/, Sheet: /mac-sheet/, Alert: /dialog/, 'Box / inspector': /groupbox/, 'Help button': /mac-buttons/, Notifications: /notification/,
-    'Spotlight / command': /command/, 'Keyboard shortcuts': /shortcuts/, 'Character viewer': /emoji/, 'Rich text': /editor/, Charts: /charts/,
+    'Spotlight / command': /command/, Dock: /dock/, 'Menu bar extra': /status-menu/, 'Reorderable rows': /sortable/, 'Keyboard shortcuts': /shortcuts/, 'Character viewer': /emoji/, 'Rich text': /editor/, Charts: /charts/,
   },
   windows: {
     'Title bar / window': /win-window/, Button: /win-buttons/, DropDownButton: /dropdown/, HyperlinkButton: /win-buttons/, SplitButton: /split/, ToggleButton: /toggle/, CheckBox: /checkbox/, ComboBox: /\bselect\b/, RadioButtons: /radio/,
@@ -63,7 +64,7 @@ const REF = {
     Banner: /adw-banner/, Toast: /toast/, 'Alert dialog': /dialog/, 'About dialog': /about/, 'Bottom sheet': /sheet/, 'Navigation split view': /adw-split/, 'Tab bar': /tab-view/, 'Popover menu': /\bmenu\b/, Popover: /popover/,
     Spinner: /spinner/, 'Progress bar': /progress/, 'Level bar': /levelbar/, Avatar: /avatar/, 'Search entry': /search/, Check: /checkbox/, Radio: /radio/, Switch: /switch/, Scale: /slider/, 'Spin button': /number/,
     Entry: /text-field/, 'Text view': /textarea/, 'Drop-down': /\bselect\b/, Calendar: /calendar/, Carousel: /carousel/, 'Carousel indicator': /page-control/, 'Shortcuts dialog': /shortcuts/, 'Emoji chooser': /emoji/,
-    'Menu bar': /menubar/, 'Tree list': /tree/, 'Column view': /table/, Paned: /splitter/, 'File chooser': /upload/, Charts: /charts/,
+    'Menu bar': /menubar/, 'Tree list': /tree/, 'Preferences dialog': /preferences/, 'Column view': /table/, Paned: /splitter/, 'File chooser': /upload/, Charts: /charts/,
   },
 };
 
@@ -77,6 +78,13 @@ for (const [os, reqs] of Object.entries(REF)) {
   console.log(`${os.padEnd(8)} ${String(items.length).padStart(3)} components · ${String(Object.keys(reqs).length).padStart(3)} required · ${pct}% covered${missing.length ? '\n         missing: ' + missing.join(', ') : ''}`);
 }
 const ids = catalog.map((c) => c.id), dup = ids.filter((id, i) => ids.indexOf(id) !== i);
+// Every component must live on exactly one page (group), and every grouped id must exist
+const grouped = groups.flatMap((g) => g.ids);
+const orphans = ids.filter((id) => !grouped.includes(id));
+const twice = grouped.filter((id, i) => grouped.indexOf(id) !== i);
+const ghosts = grouped.filter((id) => !ids.includes(id));
+console.log(`groups   ${groups.length} pages · ${grouped.length} placed${orphans.length ? ' · ungrouped: ' + orphans.join(', ') : ''}${twice.length ? ' · in two groups: ' + twice.join(', ') : ''}${ghosts.length ? ' · unknown ids: ' + ghosts.join(', ') : ''}`);
+missingTotal += orphans.length + twice.length + ghosts.length;
 if (dup.length) { console.log('duplicate ids: ' + dup.join(', ')); missingTotal++; }
 console.log(`\n${catalog.length} catalog entries · ${reqTotal - missingTotal}/${reqTotal} requirements met`);
 process.exit(missingTotal ? 1 : 0);

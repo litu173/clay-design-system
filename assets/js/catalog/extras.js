@@ -16,6 +16,7 @@
   patch('charts', ['ios', 'android', 'macos', 'windows', 'linux'], { ios: 'Swift Charts', macos: 'Swift Charts', windows: 'Charts', android: 'Charts', linux: 'Charts' });
   patch('color-picker', ['ios'], { ios: 'Color picker' });
   patch('ios-page-control', ['windows', 'linux'], { windows: 'PipsPager', linux: 'Carousel indicator dots' });
+  patch('adw-levelbar', ['web'], { web: 'Password strength / level meter' });
 
   // Deterministic decorative QR-style matrix (pair with any encoder for real codes)
   function qr(seed) {
@@ -116,4 +117,53 @@
     desc: 'The bottom view switcher used on narrow, phone-sized windows.',
     html: `<nav class="clay-tabbar" aria-label="Views" style="width:100%;background:var(--clay-surface-2)"><a class="clay-tabbar-item is-active" aria-current="page"><i data-clay-icon="music"></i>Songs</a><a class="clay-tabbar-item"><i data-clay-icon="users"></i>Artists</a><a class="clay-tabbar-item"><i data-clay-icon="layers"></i>Albums</a></nav>`, frame: 'phone', layout: 'flush' }
   );
+
+  C.push(
+  { id: 'event-calendar', name: 'Event calendar', cat: 'Data display', os: ['web', 'macos', 'windows', 'linux'], native: { macos: 'Calendar (month view)', windows: 'Calendar month view', linux: 'Calendar month view' },
+    desc: 'A month view with events, as in scheduling apps.', wide: true,
+    html: `<div class="clay-events"><div class="clay-events-head"><b class="clay-title">October 2026</b><span class="clay-grow"></span><div class="clay-btn-group"><button class="clay-btn clay-btn--secondary clay-btn--sm" aria-label="Previous"><i data-clay-icon="chevron-left"></i></button><button class="clay-btn clay-btn--secondary clay-btn--sm">Today</button><button class="clay-btn clay-btn--secondary clay-btn--sm" aria-label="Next"><i data-clay-icon="chevron-right"></i></button></div></div>
+<div class="clay-events-grid">${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(function (d) { return '<span>' + d + '</span>'; }).join('')}${(function () { var h = '', ev = { 6: '<span class="clay-event">Design review</span>', 9: '<span class="clay-event clay-event--warning">Token freeze</span>', 14: '<span class="clay-event">Sprint planning</span><span class="clay-event clay-event--success">Ship 1.0 🚀</span>', 19: '<span class="clay-event clay-event--success">Launch day</span>', 23: '<span class="clay-event">Retro</span>' }; for (var i = 0; i < 21; i++) { var d = i - 2; h += '<div class="' + (d < 1 ? 'is-muted' : d === 19 ? 'is-today' : '') + '"><b>' + (d < 1 ? 28 + d : d) + '</b>' + (ev[d] || '') + '</div>'; } return h; })()}</div></div>` },
+
+  { id: 'countdown', name: 'Countdown', cat: 'Data display', os: ['web', 'ios', 'android'], native: { ios: 'Timer text', android: 'Countdown' },
+    desc: 'A live countdown for launches and sales. Set data-clay-countdown to an ISO date.',
+    html: `<div class="clay-countdown" data-clay-countdown="2026-12-31T23:59:59" role="timer" aria-label="Time remaining"><div><b>00</b><small>Days</small></div><i>:</i><div><b>00</b><small>Hours</small></div><i>:</i><div><b>00</b><small>Min</small></div><i>:</i><div><b>00</b><small>Sec</small></div></div>`, layout: 'center' },
+
+  { id: 'copy-button', name: 'Copy to clipboard', cat: 'Actions', os: ['web', 'macos', 'windows', 'linux'],
+    desc: 'One-click copy with a success state. Add data-clay-copy="text" to any button.',
+    html: `<div class="clay-copy-field" style="width:min(100%,420px)"><code>npm install clay-ds</code><button class="clay-btn clay-btn--sm clay-btn--secondary" data-clay-copy="npm install clay-ds"><i data-clay-icon="copy"></i>Copy</button></div><button class="clay-btn clay-btn--icon clay-btn--tonal" data-clay-copy="https://clay.design" aria-label="Copy link"><i data-clay-icon="copy"></i></button>` },
+
+  { id: 'theme-toggle', name: 'Theme toggle', cat: 'Selection', os: ['web'],
+    desc: 'A playful light/dark switch built on role="switch".',
+    html: `<button class="clay-theme-toggle" role="switch" aria-checked="false" aria-label="Dark mode"></button><button class="clay-theme-toggle" role="switch" aria-checked="true" aria-label="Dark mode"></button>` },
+
+  { id: 'sortable-list', name: 'Sortable list', cat: 'Data display', os: ['web', 'ios', 'android', 'macos', 'windows', 'linux'], native: { ios: 'Reorderable list', android: 'Drag-to-reorder list', windows: 'ListView (reorder)', macos: 'Reorderable table rows', linux: 'Reorderable rows' },
+    desc: 'Drag rows to reorder them, or focus a row and press Alt + ↑/↓.',
+    html: `<ul class="clay-sortable" aria-label="Priorities"><li draggable="true" tabindex="0"><span class="clay-drag-handle">⋮⋮</span>Design tokens<span class="clay-badge" style="margin-left:auto">P0</span></li><li draggable="true" tabindex="0"><span class="clay-drag-handle">⋮⋮</span>Android presets<span class="clay-badge clay-badge--warning" style="margin-left:auto">P1</span></li><li draggable="true" tabindex="0"><span class="clay-drag-handle">⋮⋮</span>Docs site<span class="clay-badge clay-badge--neutral" style="margin-left:auto">P2</span></li><li draggable="true" tabindex="0"><span class="clay-drag-handle">⋮⋮</span>Figma kit<span class="clay-badge clay-badge--neutral" style="margin-left:auto">P3</span></li></ul>` },
+
+  { id: 'password-strength', name: 'Password strength', cat: 'Inputs', os: ['web', 'android', 'linux'],
+    desc: 'A password field with a strength meter and rules checklist.',
+    html: `<div class="clay-field" style="width:300px"><label for="pws">New password</label><input id="pws" type="password" class="clay-input" value="Clay2026"><div class="clay-levelbar is-mid" aria-label="Strength: medium"><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i></i><i></i></div><ul class="clay-checklist" style="font-size:12px"><li>8+ characters</li><li>Upper &amp; lower case</li><li style="opacity:.5">A symbol</li></ul></div>` },
+
+  { id: 'vertical-steps', name: 'Vertical steps', cat: 'Navigation', os: ['web', 'android'], native: { android: 'Vertical stepper' },
+    desc: 'Step-by-step progress for onboarding and checkout.',
+    html: `<ol class="clay-steps clay-steps--vertical"><li class="clay-step is-done">Create account<small>Done · Oct 18</small></li><li class="clay-step is-done">Choose a platform<small>iOS · Android · Web</small></li><li class="clay-step is-current" aria-current="step">Customise tokens<small>Colour, type and radius</small></li><li class="clay-step">Export &amp; ship<small>CDN, npm or native</small></li></ol>` },
+
+  { id: 'load-more', name: 'Load more', cat: 'Navigation', os: ['web', 'ios', 'android'], native: { ios: 'Load more row', android: 'Load more' },
+    desc: 'Progressive loading as an alternative to pagination.',
+    html: `<div class="clay-stack" style="width:100%;max-width:440px"><ul class="clay-list clay-list--bordered" id="lm-list"><li class="clay-list-item">Result 1</li><li class="clay-list-item">Result 2</li><li class="clay-list-item" hidden>Result 3</li><li class="clay-list-item" hidden>Result 4</li><li class="clay-list-item" hidden>Result 5</li><li class="clay-list-item" hidden>Result 6</li></ul><button class="clay-btn clay-btn--secondary clay-btn--block" data-clay-loadmore="#lm-list">Load more</button></div>` },
+
+  { id: 'mac-dock', name: 'Dock', cat: 'Platform', os: ['macos'], native: { macos: 'Dock' },
+    desc: 'The macOS Dock with magnification and running indicators. Hover the icons.',
+    html: `<div class="clay-dock"><button class="is-running" style="background:linear-gradient(135deg,#5ac8fa,#007aff)" aria-label="Finder"><i data-clay-icon="smartphone"></i></button><button class="is-running" style="background:linear-gradient(135deg,#ffb48e,#7d66f5)" aria-label="Clay"><i data-clay-icon="layers"></i></button><button style="background:linear-gradient(135deg,#34c759,#248a3d)" aria-label="Messages"><i data-clay-icon="message"></i></button><button style="background:linear-gradient(135deg,#ff9f0a,#ff375f)" aria-label="Music"><i data-clay-icon="music"></i></button><button style="background:linear-gradient(135deg,#8e8e93,#48484a)" aria-label="Settings"><i data-clay-icon="settings"></i></button></div>`, layout: 'bg' },
+
+  { id: 'mac-status-menu', name: 'Menu bar extra', cat: 'Navigation', os: ['macos'], native: { macos: 'Status menu (menu bar extra)' },
+    desc: 'A menu bar icon with its own menu, for background utilities.',
+    html: `<div style="width:100%"><div class="clay-menubar"><b>Clay</b><span>File</span><span>Edit</span><span class="clay-menubar-end"><span class="is-open" style="padding:2px 6px;border-radius:4px;background:rgb(0 0 0 / .08)"><i data-clay-icon="layers" style="width:15px;height:15px"></i></span><i data-clay-icon="wifi" style="width:15px;height:15px"></i><span>Mon 9:41</span></span></div><div class="clay-menu clay-menu--static" role="menu" style="margin-left:auto;margin-right:60px;margin-top:2px;width:240px"><span class="clay-menu-label">Clay Sync</span><button class="clay-menu-item" role="menuitem"><i data-clay-icon="refresh"></i>Sync now</button><button class="clay-menu-item" role="menuitem"><i data-clay-icon="palette"></i>Open theme…</button><div class="clay-menu-sep"></div><button class="clay-menu-item" role="menuitem">Quit Clay<kbd class="clay-kbd">⌘Q</kbd></button></div></div>`, layout: 'flush' },
+
+  { id: 'adw-preferences', name: 'Preferences dialog', cat: 'Overlays', os: ['linux'], native: { linux: 'AdwPreferencesDialog' },
+    desc: 'Grouped settings pages with a view switcher and search.',
+    html: `<div class="clay-dialog is-static" style="width:min(100%,520px)"><div class="clay-titlebar" style="height:46px;border-radius:14px 14px 0 0"><button class="clay-btn clay-btn--plain clay-btn--icon clay-btn--sm" aria-label="Search"><i data-clay-icon="search"></i></button><span style="flex:1;display:flex;justify-content:center"><span class="clay-viewswitcher"><button aria-pressed="true"><i data-clay-icon="settings"></i>General</button><button aria-pressed="false"><i data-clay-icon="palette"></i>Appearance</button></span></span><span class="clay-gnome-btns"><i></i></span></div><div class="clay-dialog-body" style="text-align:left;background:var(--clay-bg)"><div class="clay-pref-group"><h4>Behaviour</h4><ul class="clay-boxed"><li><span class="clay-boxed-text">Run in background</span><input type="checkbox" role="switch" class="clay-switch" checked aria-label="Run in background"></li><li><span class="clay-boxed-text">Start on login</span><input type="checkbox" role="switch" class="clay-switch" aria-label="Start on login"></li></ul></div></div></div>`, layout: 'center' }
+  );
+  // patches for entries defined above in this file
+  patch('date-range', ['android'], { android: 'Date range picker' });
 })();

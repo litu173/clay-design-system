@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <title>Clay</title>
+  <defs>
+    <linearGradient id="cm-g" x1="12" y1="10" x2="52" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFB48E"/>
+      <stop offset=".5" stop-color="#EC6F55"/>
+      <stop offset="1" stop-color="#7D66F5"/>
+    </linearGradient>
+    <filter id="cm-soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="1.6"/></filter>
+  </defs>
+  <!-- A rope of clay, coiled into a C: one material, any shape -->
+  <path d="M46.4 19.6A18 18 0 1 0 46.4 44.4" stroke="#2A1640" stroke-opacity=".22" stroke-width="13" stroke-linecap="round" transform="translate(.8 2.2)" filter="url(#cm-soft)"/>
+  <path d="M46.4 19.6A18 18 0 1 0 46.4 44.4" stroke="url(#cm-g)" stroke-width="14" stroke-linecap="round"/>
+  <path d="M43.6 17.4A17 17 0 0 0 16.4 26.6" stroke="#fff" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"/>
+  <!-- A thumbprint pressed into the clay: shaped by hand -->
+  <path d="M25.19 44.80A14.5 14.5 0 0 1 19.44 39.25" stroke="#3A1B4F" stroke-opacity=".17" stroke-width="1.3" stroke-linecap="round"/><path d="M25.26 48.69A18 18 0 0 1 15.31 38.74" stroke="#3A1B4F" stroke-opacity=".17" stroke-width="1.3" stroke-linecap="round"/><path d="M21.25 50.62A21.5 21.5 0 0 1 13.38 42.75" stroke="#3A1B4F" stroke-opacity=".17" stroke-width="1.3" stroke-linecap="round"/>
+</svg>

@@ -646,6 +646,35 @@
       if (t.matches('[data-clay-select-all]')) { var tb = t.closest('table'); tb.querySelectorAll('tbody input[type="checkbox"]').forEach(function (c) { c.checked = t.checked; c.closest('tr').classList.toggle('is-selected', t.checked); }); }
       else if (t.matches('.clay-table tbody input[type="checkbox"]')) t.closest('tr').classList.toggle('is-selected', t.checked);
     });
+
+    // copy buttons — <button data-clay-copy="text">
+    doc.addEventListener('click', function (e) {
+      var b = e.target.closest && e.target.closest('[data-clay-copy]'); if (!b) return;
+      var txt = b.getAttribute('data-clay-copy'); var lbl = b.innerHTML;
+      (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).catch(function () {}).finally(function () {
+        b.classList.add('is-copied'); b.innerHTML = icon('check') + (b.classList.contains('clay-btn--icon') ? '' : 'Copied');
+        setTimeout(function () { b.classList.remove('is-copied'); b.innerHTML = lbl; }, 1500);
+      });
+    });
+    // theme toggle & load more
+    doc.addEventListener('click', function (e) {
+      var t = e.target.closest && e.target.closest('.clay-theme-toggle'); if (t) t.setAttribute('aria-checked', t.getAttribute('aria-checked') !== 'true');
+      var lm = e.target.closest && e.target.closest('[data-clay-loadmore]');
+      if (lm) { var host = $(lm.getAttribute('data-clay-loadmore')); var next = host && host.querySelectorAll('[hidden]'); if (next) { Array.prototype.slice.call(next, 0, 2).forEach(function (n) { n.hidden = false; }); if (host.querySelectorAll('[hidden]').length === 0) { lm.disabled = true; lm.textContent = 'All loaded'; } } }
+    });
+    // sortable lists (HTML5 drag and drop + keyboard Alt+Arrow)
+    doc.addEventListener('dragstart', function (e) { var li = e.target.closest && e.target.closest('.clay-sortable > li'); if (li) { li.classList.add('is-dragging'); e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', ''); } catch (er) {} } });
+    doc.addEventListener('dragend', function (e) { var li = e.target.closest && e.target.closest('.clay-sortable > li'); if (li) li.classList.remove('is-dragging'); });
+    doc.addEventListener('dragover', function (e) {
+      var list = e.target.closest && e.target.closest('.clay-sortable'); if (!list) return; var drag = list.querySelector('.is-dragging'); if (!drag) return;
+      e.preventDefault(); var over = e.target.closest('li'); if (!over || over === drag) return;
+      var r = over.getBoundingClientRect(); list.insertBefore(drag, e.clientY > r.top + r.height / 2 ? over.nextSibling : over);
+    });
+    doc.addEventListener('keydown', function (e) {
+      var li = e.target.closest && e.target.closest('.clay-sortable > li'); if (!li || !e.altKey) return;
+      if (e.key === 'ArrowUp' && li.previousElementSibling) { li.parentNode.insertBefore(li, li.previousElementSibling); li.focus(); e.preventDefault(); }
+      if (e.key === 'ArrowDown' && li.nextElementSibling) { li.parentNode.insertBefore(li.nextElementSibling, li); li.focus(); e.preventDefault(); }
+    });
     // right-click menus — <div data-clay-contextmenu> … <div class="clay-menu"> … </div></div>
     var ctxMenu = null;
     function closeCtx() { if (ctxMenu) { ctxMenu.classList.remove('is-open', 'is-ctx'); ctxMenu.style.left = ctxMenu.style.top = ''; ctxMenu = null; } }
@@ -736,6 +765,17 @@
     scope.querySelectorAll('.clay-range').forEach(updateRange);
     scope.querySelectorAll('.clay-calendar[data-clay-calendar]').forEach(function (c) { if (!c._clayDate) renderCalendar(c); });
     scope.querySelectorAll('.clay-check[data-indeterminate]').forEach(function (c) { c.indeterminate = true; });
+    scope.querySelectorAll('[data-clay-countdown]').forEach(function (el) {
+      if (el._clayTick) return;
+      var end = new Date(el.getAttribute('data-clay-countdown')).getTime();
+      if (isNaN(end)) end = Date.now() + 3 * 864e5 + 5 * 36e5;
+      var tick = function () {
+        if (!el.isConnected) return clearInterval(el._clayTick);
+        var d = Math.max(0, end - Date.now()), parts = [Math.floor(d / 864e5), Math.floor(d / 36e5) % 24, Math.floor(d / 6e4) % 60, Math.floor(d / 1e3) % 60];
+        el.querySelectorAll('b').forEach(function (b, i) { b.textContent = ('0' + parts[i]).slice(-2); });
+      };
+      tick(); el._clayTick = setInterval(tick, 1000);
+    });
   }
 
   /** Boot Clay. Reads data-clay-* attributes on the target as defaults. */

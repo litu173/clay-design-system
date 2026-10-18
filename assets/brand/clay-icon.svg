@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <title>Clay</title>
+  <defs>
+    <linearGradient id="ci-bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop stop-color="#1D1A2E"/><stop offset="1" stop-color="#0D0C16"/></linearGradient>
+    <linearGradient id="ci-g" x1="14" y1="12" x2="50" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#FFB48E"/><stop offset=".5" stop-color="#EC6F55"/><stop offset="1" stop-color="#8B76FF"/></linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#ci-bg)"/>
+  <rect x=".5" y=".5" width="63" height="63" rx="15.5" stroke="#fff" stroke-opacity=".08"/>
+  <path d="M43.3 21.8A14.6 14.6 0 1 0 43.3 42.2" stroke="url(#ci-g)" stroke-width="11.5" stroke-linecap="round"/>
+  <path d="M41 20A13.8 13.8 0 0 0 19 27.4" stroke="#fff" stroke-opacity=".5" stroke-width="2.6" stroke-linecap="round"/>
+</svg>
