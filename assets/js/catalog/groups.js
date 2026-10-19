@@ -4,7 +4,7 @@ window.ClayGroups = [
   /* General */
   { id: 'button', section: 'General', name: 'Buttons', icon: 'box', desc: 'Every way to trigger an action: emphasis levels, icon buttons, groups, split buttons, toggles, dropdown buttons and copy buttons.', ids: ['web-buttons', 'ios-buttons', 'm3-buttons', 'mac-buttons', 'win-buttons', 'adw-buttons', 'icon-buttons', 'button-group', 'split-button', 'toggle-group', 'web-dropdown', 'copy-button'] },
   { id: 'floating', section: 'General', name: 'Floating actions', icon: 'plus', desc: 'Floating action buttons, FAB menus and back-to-top.', ids: ['m3-fab', 'm3-fab-menu', 'back-top'] },
-  { id: 'typography', section: 'General', name: 'Typography', icon: 'type', desc: 'Headings, prose, quotes, code, keyboard keys and highlights.', ids: ['typography', 'kbd'] },
+  { id: 'typography', section: 'General', name: 'Typography & icons', icon: 'type', desc: 'Headings, prose, quotes, code, keyboard keys, highlights and the built-in icon set.', ids: ['typography', 'kbd', 'icons'] },
   /* Layout */
   { id: 'layout', section: 'Layout', name: 'Layout', icon: 'grid', desc: 'Grids, dividers, resizable split panes, aspect ratios and group boxes.', ids: ['grid', 'divider', 'splitter', 'aspect-ratio', 'mac-groupbox'] },
   /* Navigation */

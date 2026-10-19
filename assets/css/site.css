@@ -405,3 +405,24 @@ select.cz-input option { background: #14122e; }
 /* ---------- Toast for site actions ---------- */
 .s-toast { position: fixed; left: 50%; bottom: 28px; z-index: 120; transform: translate(-50%, 20px); opacity: 0; padding: 10px 16px; border-radius: 999px; background: var(--s-text); color: #0b0a1a; font: 600 13px var(--s-font); pointer-events: none; transition: all .5s var(--s-ease); box-shadow: 0 20px 50px -10px rgba(0,0,0,.7); }
 .s-toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- Centred hero: copy → platform tabs → live preview → stats ---------- */
+.hero-center { max-width: 920px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.hero-center h1 { margin: 22px 0 20px; }
+.hero-center .lead { margin: 0 auto; max-width: 640px; }
+.hero-center .cta { justify-content: center; }
+.hero-tabs { justify-content: center; margin-top: 40px; padding: 5px; gap: 4px; border-radius: 999px; border: 1px solid var(--s-line); background: rgba(255,255,255,.03); }
+.hero-tabs .os-pill { border-color: transparent; background: transparent; }
+.hero-tabs .os-pill[aria-pressed="true"] { background: var(--s-text); }
+.hero .hero-stage { width: 100%; max-width: 980px; margin: 28px auto 0; height: clamp(560px, 52vw, 640px); }
+.hero .hero-stage .orbit { inset: 10% 6%; }
+.hero .hero-stage .clay-window { width: min(100%, 720px); height: 470px; transform: none; }
+.hero .hero-stage .clay-device { transform: none; }
+.hero .hero-stage .stage-swap.out { transform: translateY(24px) scale(.96); }
+.hero .fc-1 { top: 14%; left: 2%; } .hero .fc-2 { bottom: 22%; right: 2%; } .hero .fc-3 { bottom: 6%; left: 8%; }
+.hero .hero-meta { justify-content: center; text-align: center; margin-top: 36px; gap: 48px; }
+@media (max-width: 760px) {
+  .hero-tabs { border-radius: 22px; }
+  .hero .hero-stage .clay-window { height: 400px; }
+  .hero .hero-meta { gap: 24px; }
+}

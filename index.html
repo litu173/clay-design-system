@@ -12,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="dist/clay.css?v=7" />
-  <link rel="stylesheet" href="assets/css/site.css?v=7" />
+  <link rel="stylesheet" href="dist/clay.css?v=8" />
+  <link rel="stylesheet" href="assets/css/site.css?v=8" />
 </head>
 <body class="site">
   <a class="skip" href="#main">Skip to content</a>
@@ -25,7 +25,6 @@
         <a href="index.html" class="brand" aria-label="Clay home"><img class="brand-logo" src="assets/brand/clay-mark.svg" width="30" height="30" alt=""><span>Clay</span></a>
         <nav class="nav-links" aria-label="Primary">
           <a href="components.html">Components</a>
-          <a href="foundations.html">Foundations</a>
           <a href="docs.html">Docs</a>
           <a href="docs.html#install">Install</a>
         </nav>
@@ -39,7 +38,6 @@
   </header>
   <nav class="menu-panel" id="menuPanel" aria-label="Mobile" hidden>
     <a href="components.html"><i data-icon="grid"></i>Components</a>
-    <a href="foundations.html"><i data-icon="layers"></i>Foundations</a>
     <a href="docs.html"><i data-icon="file"></i>Docs</a>
     <a href="docs.html#install"><i data-icon="download"></i>Install</a>
     <a href="components.html#foundations"><i data-icon="palette"></i>Theme playground</a>
@@ -48,29 +46,27 @@
   <main id="main">
     <!-- HERO -->
     <section class="hero wrap">
-      <div class="hero-grid">
-        <div>
-          <span class="eyebrow reveal"><b>New</b> 6 platforms · 180+ components · 10 export formats</span>
-          <h1 class="reveal" style="--d:.08s">Design once.<br /><em class="serif grad-text">Feel native</em> everywhere.</h1>
-          <p class="lead reveal" style="--d:.16s">Clay is one design system that speaks every platform's language: Web, iOS, Android, macOS, Windows and Linux. Pick a platform, tune colour, type and radius live, then ship with one CDN line or export native tokens.</p>
-          <div class="cta reveal" style="--d:.24s">
-            <a class="btn btn-primary" href="components.html"><i data-icon="grid"></i>Explore components</a>
-            <a class="btn" href="components.html"><i data-icon="palette"></i>Try it live</a>
-          </div>
-          <div class="os-strip reveal" id="heroOS" style="--d:.32s" role="group" aria-label="Preview platform"></div>
-          <div class="hero-meta reveal" style="--d:.4s">
-            <div><b>6</b>platforms</div>
-            <div><b>180+</b>components</div>
-            <div><b>~37kb</b>CSS + JS, gzipped</div>
-            <div><b>0</b>dependencies</div>
-          </div>
+      <div class="hero-center">
+        <span class="eyebrow reveal"><b>New</b> 6 platforms · 180+ components · 10 export formats</span>
+        <h1 class="reveal" style="--d:.08s">Design once.<br /><em class="serif grad-text">Feel native</em> everywhere.</h1>
+        <p class="lead reveal" style="--d:.16s">Clay is one design system that speaks every platform's language: Web, iOS, Android, macOS, Windows and Linux. Pick a platform, tune colour, type and radius live, then ship with one CDN line or export native tokens.</p>
+        <div class="cta reveal" style="--d:.24s">
+          <a class="btn btn-primary" href="components.html"><i data-icon="grid"></i>Explore components</a>
+          <a class="btn" href="components.html"><i data-icon="palette"></i>Try it live</a>
         </div>
-        <div class="hero-stage reveal" style="--d:.2s" id="heroStage" aria-label="Live platform preview">
-          <div class="orbit" aria-hidden="true"></div>
-          <div class="float-card fc-1"><span class="dot"><i data-icon="sparkles"></i></span><div><b id="heroOSLabel">Human Interface</b>Native feel, auto-adapted</div></div>
-          <div class="float-card fc-2"><span class="dot"><i data-icon="palette"></i></span><div><b>Live tokens</b>--clay-primary updated</div></div>
-          <div class="float-card fc-3"><span class="dot"><i data-icon="code"></i></span><div><b>SwiftUI · Compose · Flutter</b>Exported in one click</div></div>
-        </div>
+        <div class="os-strip hero-tabs reveal" id="heroOS" style="--d:.32s" role="group" aria-label="Preview platform"></div>
+      </div>
+      <div class="hero-stage reveal" style="--d:.36s" id="heroStage" aria-label="Live platform preview">
+        <div class="orbit" aria-hidden="true"></div>
+        <div class="float-card fc-1"><span class="dot"><i data-icon="sparkles"></i></span><div><b id="heroOSLabel">Human Interface</b>Native feel, auto-adapted</div></div>
+        <div class="float-card fc-2"><span class="dot"><i data-icon="palette"></i></span><div><b>Live tokens</b>--clay-primary updated</div></div>
+        <div class="float-card fc-3"><span class="dot"><i data-icon="code"></i></span><div><b>SwiftUI · Compose · Flutter</b>Exported in one click</div></div>
+      </div>
+      <div class="hero-meta reveal" style="--d:.44s">
+        <div><b>6</b>platforms</div>
+        <div><b>180+</b>components</div>
+        <div><b>~37kb</b>CSS + JS, gzipped</div>
+        <div><b>0</b>dependencies</div>
       </div>
     </section>
 
@@ -205,7 +201,7 @@ Clay.export('swiftui'); // or compose, flutter…
     <div class="wrap">
       <div class="footer-grid">
         <div><a href="index.html" class="brand"><img class="brand-logo" src="assets/brand/clay-mark.svg" width="30" height="30" alt=""><span>Clay</span></a><p>One token-driven design system for every platform, device and use case. Made with care by Mutaher.</p></div>
-        <div><h5>System</h5><a href="components.html">Components</a><a href="foundations.html">Foundations</a><a href="foundations.html#icons">Icons</a><a href="foundations.html#platforms">Platform specs</a></div>
+        <div><h5>System</h5><a href="components.html">Components</a><a href="components.html#/typography">Icons</a><a href="docs.html#platforms">Platform specs</a><a href="docs.html#export">Token export</a></div>
         <div><h5>Developers</h5><a href="docs.html#install">Install</a><a href="docs.html#theming">Theming API</a><a href="docs.html#export">Token export</a><a href="docs.html#frameworks">Frameworks</a></div>
         <div><h5>More</h5><a href="https://github.com/litu173/clay-design-system">GitHub</a><a href="https://www.npmjs.com/package/clay-ds">npm</a><a href="docs.html#accessibility">Accessibility</a><a href="docs.html#changelog">Changelog</a></div>
       </div>
@@ -213,7 +209,7 @@ Clay.export('swiftui'); // or compose, flutter…
     </div>
   </footer>
 
-  <script src="dist/clay.js?v=7"></script>
-  <script src="assets/js/site.js?v=7"></script>
+  <script src="dist/clay.js?v=8"></script>
+  <script src="assets/js/site.js?v=8"></script>
 </body>
 </html>

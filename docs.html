@@ -5,51 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Docs · Clay Design System</title>
   <meta name="description" content="Install Clay via CDN or npm, theme it with CSS variables or the JS API, and export tokens to SwiftUI, Jetpack Compose, Flutter, WinUI, GTK, Tailwind and Figma." />
-  <meta name="theme-color" content="#05050f" />
+  <meta name="theme-color" content="#ffffff" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="dist/clay.css?v=7" />
-  <link rel="stylesheet" href="assets/css/site.css?v=7" />
+  <link rel="stylesheet" href="dist/clay.css?v=8" />
+  <link rel="stylesheet" href="assets/css/site.css?v=8" />
+  <link rel="stylesheet" href="assets/css/app.css?v=8" />
+  <script>try { var t = JSON.parse(localStorage.getItem('clay-site-theme') || '{}'); var m = t.mode === 'auto' ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : t.mode; if (m === 'dark') document.documentElement.setAttribute('data-pre-chrome', 'dark'); } catch (e) {}</script>
 </head>
-<body class="site">
-  <a class="skip" href="#main">Skip to content</a>
-  <div class="backdrop" aria-hidden="true"></div>
+<body class="site app app-doc">
+  <script>if (document.documentElement.getAttribute('data-pre-chrome') === 'dark') document.body.setAttribute('data-chrome', 'dark');</script>
+  <a class="skip" href="#dashMain">Skip to content</a>
 
-  <header class="nav" id="nav">
-    <div class="wrap">
-      <div class="nav-inner">
-        <a href="index.html" class="brand" aria-label="Clay home"><img class="brand-logo" src="assets/brand/clay-mark.svg" width="30" height="30" alt=""><span>Clay</span></a>
-        <nav class="nav-links" aria-label="Primary">
-          <a href="components.html">Components</a>
-          <a href="foundations.html">Foundations</a>
-          <a href="docs.html" aria-current="page">Docs</a>
-          <a href="docs.html#install">Install</a>
-        </nav>
-        <span class="nav-spacer"></span>
-        <span class="ver hide-sm">v1.0.0</span>
-        <a class="icon-btn hide-sm" href="https://github.com/litu173/clay-design-system" aria-label="GitHub"><i data-icon="code"></i></a>
-        <a class="btn btn-primary btn-sm hide-sm" href="components.html">Components</a>
-        <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menuPanel"></button>
-      </div>
+  <header class="dash-header">
+    <button class="dash-icon-btn dash-burger" type="button" data-a-open="left" aria-label="Browse documentation"><i data-icon="menu"></i></button>
+    <a href="index.html" class="dash-brand" aria-label="Clay home"><img class="brand-logo" src="assets/brand/clay-mark.svg" width="28" height="28" alt=""><span>Clay</span><span class="dash-ver">1.0</span></a>
+    <nav class="dash-nav" aria-label="Primary">
+      <a href="components.html">Components</a>
+      <a href="docs.html" aria-current="page">Docs</a>
+      <a href="docs.html#install">Install</a>
+    </nav>
+    <div class="dash-search" role="search">
+      <i data-icon="search"></i>
+      <input type="search" placeholder="Search components" data-a-search aria-label="Search components" autocomplete="off">
+      <kbd>/</kbd>
+      <ul class="dash-results" data-a-results role="listbox" hidden></ul>
     </div>
+    <span class="dash-spacer"></span>
+    <div class="dash-os" data-a-oswitch role="group" aria-label="Platform"></div>
+    <button class="dash-icon-btn" type="button" data-a-mode aria-label="Toggle dark mode"></button>
+    <a class="dash-icon-btn dash-hide-sm" href="https://github.com/litu173/clay-design-system" aria-label="GitHub"><i data-icon="code"></i></a>
+    <a class="dash-cta dash-hide-sm" href="docs.html#install">Get started</a>
   </header>
-  <nav class="menu-panel" id="menuPanel" aria-label="Mobile" hidden>
-    <a href="components.html"><i data-icon="grid"></i>Components</a>
-    <a href="foundations.html"><i data-icon="layers"></i>Foundations</a>
-    <a href="docs.html"><i data-icon="file"></i>Docs</a>
-    <a href="docs.html#install"><i data-icon="download"></i>Install</a>
-    <a href="components.html#foundations"><i data-icon="palette"></i>Theme playground</a>
-  </nav>
 
-  <main id="main" class="wrap docs">
-    <aside class="docs-side" aria-label="Documentation">
+  <div class="dash dash--doc">
+    <aside class="dash-left ov docs-side" id="dashLeft" aria-label="Documentation">
       <h4>Getting started</h4>
       <a href="#intro">Introduction</a>
       <a href="#install">Installation</a>
       <a href="#quickstart">Quick start</a>
-      <a href="#platforms">Choosing a platform</a>
+      <a href="#platforms">Platforms &amp; specs</a>
       <h4>Theming</h4>
       <a href="#theming">CSS variables</a>
       <a href="#js-api">JavaScript API</a>
@@ -62,7 +59,8 @@
       <a href="#changelog">Changelog</a>
     </aside>
 
-    <div class="docs-main">
+    <main class="dash-main ov" id="dashMain" tabindex="-1">
+      <div class="dash-page docs-page">
       <div class="docs-hero" id="intro">
         <span class="kicker">Documentation</span>
         <h1>Up and running <em class="serif grad-text">in a minute.</em></h1>
@@ -98,7 +96,7 @@ import Clay from 'clay-ds';
 Clay.init({ os: 'auto', mode: 'auto' });
 </pre>
         <h3 class="sub">Download</h3>
-        <p class="desc">Grab <a href="dist/clay.css?v=7" download style="color:var(--s-accent)">clay.css</a>, <a href="dist/clay.js?v=7" download style="color:var(--s-accent)">clay.js</a> and <a href="dist/tokens.json" download style="color:var(--s-accent)">tokens.json</a> and self-host them.</p>
+        <p class="desc">Grab <a href="dist/clay.css?v=8" download style="color:var(--s-accent)">clay.css</a>, <a href="dist/clay.js?v=8" download style="color:var(--s-accent)">clay.js</a> and <a href="dist/tokens.json" download style="color:var(--s-accent)">tokens.json</a> and self-host them.</p>
       </section>
 
       <section class="doc-sec" id="quickstart">
@@ -139,6 +137,24 @@ Clay.init({ os: 'auto', mode: 'auto' });
 &lt;section data-clay-os="ios" data-clay-mode="dark" class="clay"&gt; …iOS preview… &lt;/section&gt;
 &lt;section data-clay-os="windows" data-clay-mode="light" class="clay"&gt; …Windows preview… &lt;/section&gt;
 </pre>
+        <h3 class="sub">Platform specs</h3>
+        <p class="desc">The defaults each preset ships with, all drawn from the platform's official guidelines.</p>
+        <div class="api-wrap"><table class="api cmp-table">
+          <thead><tr><th>Token</th><th>Web</th><th>iOS</th><th>Android</th><th>macOS</th><th>Windows</th><th>Linux</th></tr></thead>
+          <tbody>
+            <tr><td>Guideline</td><td>Clay</td><td>HIG</td><td>Material 3</td><td>HIG</td><td>Fluent 2</td><td>Adwaita</td></tr>
+            <tr><td>Accent</td><td>#6d5efc</td><td>#007aff</td><td>#6750a4</td><td>#007aff</td><td>#0f6cbd</td><td>#3584e4</td></tr>
+            <tr><td>Typeface</td><td>Inter</td><td>SF Pro</td><td>Roboto</td><td>SF Pro</td><td>Segoe UI Variable</td><td>Cantarell</td></tr>
+            <tr><td>Body size</td><td>16px</td><td>17pt</td><td>16sp</td><td>13pt</td><td>14px</td><td>15px</td></tr>
+            <tr><td>Control height</td><td>40</td><td>44</td><td>40</td><td>28</td><td>32</td><td>34</td></tr>
+            <tr><td>Button radius</td><td>12</td><td>12</td><td>full</td><td>6</td><td>4</td><td>6</td></tr>
+            <tr><td>Card radius</td><td>17</td><td>14</td><td>12</td><td>10</td><td>8</td><td>12</td></tr>
+            <tr><td>Dialog radius</td><td>24</td><td>14</td><td>28</td><td>12</td><td>8</td><td>14</td></tr>
+            <tr><td>Switch</td><td>44×26</td><td>51×31</td><td>52×32</td><td>38×22</td><td>40×20</td><td>48×26</td></tr>
+            <tr><td>Input style</td><td>Outlined</td><td>Filled</td><td>Outlined</td><td>Bezel</td><td>Underline accent</td><td>Filled</td></tr>
+            <tr><td>Press feedback</td><td>Scale .97</td><td>Scale .98</td><td>Ripple</td><td>Darken</td><td>Darken</td><td>Darken</td></tr>
+          </tbody>
+        </table></div>
         <div class="callout"><i data-icon="info"></i><div><b>Tip:</b> In hybrid apps built with Capacitor, Ionic, Electron, Tauri or a PWA, use <code class="inline">data-clay-os="auto"</code>. The same build then looks like iOS on an iPhone, Material on a Pixel and Fluent on Windows.</div></div>
       </section>
 
@@ -334,22 +350,27 @@ module.exports = {
       <section class="doc-sec" id="changelog">
         <span class="kicker">Release notes</span>
         <h2>Changelog</h2>
-        <ol class="clay-timeline clay" data-clay-mode="dark" style="background:transparent;color:var(--s-text)">
+        <ol class="clay-timeline" style="color:var(--s-text)">
           <li><b>1.0.0</b> · October 2026<div style="color:var(--s-text-2);font-size:14px">First release: six platform presets, 180+ components, per-platform catalogs, live Foundations panel, 10 export formats, 80+ icons.</div></li>
           <li><b>Next</b> · planned<div style="color:var(--s-text-2);font-size:14px">visionOS and watchOS presets, KDE Breeze, RTL showcase, web components wrapper, Figma library.</div></li>
         </ol>
       </section>
-    </div>
-  </main>
+        <footer class="doc-foot"><span>© 2026 Clay Design System · MIT License</span><span><a href="index.html">Home</a> · <a href="components.html">Components</a> · <a href="https://github.com/litu173/clay-design-system">GitHub</a></span></footer>
+      </div>
+    </main>
+  </div>
+  <div class="a-scrim" aria-hidden="true"></div>
 
-  <footer class="footer">
-    <div class="wrap">
-      <div class="footer-bottom" style="margin-top:0;border:0;padding-top:0"><span>© 2026 Clay Design System · MIT License</span><span><a href="index.html" style="display:inline">Home</a> · <a href="components.html" style="display:inline">Components</a> · <a href="foundations.html" style="display:inline">Foundations</a></span></div>
-    </div>
-  </footer>
-
-  <script src="dist/clay.js?v=7"></script>
-  <script src="assets/js/site.js?v=7"></script>
+  <script src="dist/clay.js?v=8"></script>
+  <script src="assets/js/catalog/shared.js?v=8"></script>
+  <script src="assets/js/catalog/web.js?v=8"></script>
+  <script src="assets/js/catalog/ios.js?v=8"></script>
+  <script src="assets/js/catalog/android.js?v=8"></script>
+  <script src="assets/js/catalog/desktop.js?v=8"></script>
+  <script src="assets/js/catalog/extras.js?v=8"></script>
+  <script src="assets/js/catalog/groups.js?v=8"></script>
+  <script src="assets/js/site.js?v=8"></script>
+  <script src="assets/js/dash.js?v=8"></script>
   <script>
     (function () {
       var F = [['css', 'CSS', 'css'], ['scss', 'SCSS', 'scss'], ['tailwind', 'Tailwind', 'js'], ['json', 'JSON', 'js'], ['figma', 'Figma', 'js'], ['swiftui', 'SwiftUI', 'js'], ['compose', 'Compose', 'js'], ['flutter', 'Flutter', 'js'], ['xaml', 'WinUI', 'xml'], ['gtk', 'GTK', 'gtk']];

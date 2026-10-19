@@ -164,6 +164,9 @@
     desc: 'Grouped settings pages with a view switcher and search.',
     html: `<div class="clay-dialog is-static" style="width:min(100%,520px)"><div class="clay-titlebar" style="height:46px;border-radius:14px 14px 0 0"><button class="clay-btn clay-btn--plain clay-btn--icon clay-btn--sm" aria-label="Search"><i data-clay-icon="search"></i></button><span style="flex:1;display:flex;justify-content:center"><span class="clay-viewswitcher"><button aria-pressed="true"><i data-clay-icon="settings"></i>General</button><button aria-pressed="false"><i data-clay-icon="palette"></i>Appearance</button></span></span><span class="clay-gnome-btns"><i></i></span></div><div class="clay-dialog-body" style="text-align:left;background:var(--clay-bg)"><div class="clay-pref-group"><h4>Behaviour</h4><ul class="clay-boxed"><li><span class="clay-boxed-text">Run in background</span><input type="checkbox" role="switch" class="clay-switch" checked aria-label="Run in background"></li><li><span class="clay-boxed-text">Start on login</span><input type="checkbox" role="switch" class="clay-switch" aria-label="Start on login"></li></ul></div></div></div>`, layout: 'center' }
   );
+  C.push({ id: 'icons', name: 'Icons', cat: 'Data display', os: ['web', 'ios', 'android', 'macos', 'windows', 'linux'], wide: true,
+    desc: 'Built-in 24px stroke icons that inherit currentColor. Use <i data-clay-icon="name"></i> or Clay.icon(name). Click an icon to copy its tag.',
+    html: '<div class="clay-icon-grid">' + Object.keys((window.Clay && window.Clay.icons) || {}).map(function (n) { return '<button type="button" class="clay-icon-tile" data-clay-copy=\'<i data-clay-icon="' + n + '"></i>\' title="' + n + '"><i data-clay-icon="' + n + '"></i><span>' + n + '</span></button>'; }).join('') + '</div>' });
   // patches for entries defined above in this file
   patch('date-range', ['android'], { android: 'Date range picker' });
 })();
